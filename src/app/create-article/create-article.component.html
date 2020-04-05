@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <h3 class="col text-center">
+      You just found an amazing resource? Save it here!
+    </h3>
+  </div>
+
+  <form [formGroup]="articleForm" (ngSubmit)="onSubmit(articleForm.value)">
+    <div class="form-group">
+      <label for="name">
+        Name
+      </label>
+      <input class="form-control" type="text" id="name" formControlName="name">
+    </div>
+    <div class="form-group">
+      <label for="description">
+        Description
+      </label>
+      <input class="form-control" type="text" id="description" formControlName="description">
+    </div>
+    <div class="form-group">
+      <label for="rating">
+        Rating
+      </label>
+      <input class="form-control" type="text" id="rating" formControlName="rating">
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <button class="btn btn-success" type="submit">Save</button>
+      </div>
+    </div>
+  </form>
+</div>

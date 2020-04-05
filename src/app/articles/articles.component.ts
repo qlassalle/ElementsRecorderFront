@@ -24,4 +24,9 @@ export class ArticlesComponent implements OnInit {
   ratingAsStars(rating: number): number[] {
     return Array(rating);
   }
+
+  delete(id: number): void {
+    this.articles = this.articles.filter(article => article.id !== id);
+    this.articleService.delete(id);
+  }
 }

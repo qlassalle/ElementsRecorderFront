@@ -7,20 +7,26 @@ import {HttpClientModule} from '@angular/common/http';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MenuNavbarComponent } from './menu-navbar/menu-navbar.component';
+import { CreateArticleComponent } from './create-article/create-article.component';
+import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     ArticlesComponent,
     ArticleDetailComponent,
-    MenuNavbarComponent
+    MenuNavbarComponent,
+    CreateArticleComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    FormBuilder
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
