@@ -20,4 +20,8 @@ export class ArticlesComponent implements OnInit {
   private getArticles(): void {
     this.articleService.getArticles().subscribe(articles => this.articles = articles);
   }
+
+  ratingAsStars(rating: number): number[] {
+    return Array(rating);
+  }
 }

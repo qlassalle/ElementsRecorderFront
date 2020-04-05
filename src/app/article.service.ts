@@ -15,4 +15,8 @@ export class ArticleService {
   public getArticles(): Observable<Article[]> {
     return this.http.get<Article[]>(this.url + '/').pipe();
   }
+
+  getArticle(id: number): Observable<Article> {
+    return this.http.get<Article>(this.url + '/' + id).pipe();
+  }
 }
