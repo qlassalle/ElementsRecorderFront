@@ -2,6 +2,27 @@
   margin-top: 30px;
 }
 
+.article-body {
+  height: 200px;
+}
+
+.article-header {
+  height: 10%;
+  background-color: rgba(0,0,0,.03);
+  text-align: center;
+  padding-top: 10px;
+  color: #44484f !important;
+}
+
+.article-description {
+  height: 60%;
+  text-align: justify;
+}
+
+.article-detail-link {
+  height: 10%;
+}
+
 .article-card {
   margin-bottom: 30px;
 }

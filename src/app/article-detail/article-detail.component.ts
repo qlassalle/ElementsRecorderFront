@@ -24,4 +24,7 @@ export class ArticleDetailComponent implements OnInit {
     this.articleService.getArticle(id).subscribe(article => this.article = article);
   }
 
+  ratingAsStars(): number[] {
+    return Array(this.article.rating);
+  }
 }

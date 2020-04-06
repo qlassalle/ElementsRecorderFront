@@ -8,19 +8,25 @@
   <form [formGroup]="articleForm" (ngSubmit)="onSubmit(articleForm.value)">
     <div class="form-group">
       <label for="name">
-        Name
+        Name:
       </label>
       <input class="form-control" type="text" id="name" formControlName="name">
     </div>
     <div class="form-group">
       <label for="description">
-        Description
+        Description:
       </label>
       <input class="form-control" type="text" id="description" formControlName="description">
     </div>
     <div class="form-group">
+      <label for="url">
+        URL:
+      </label>
+      <input class="form-control" type="text" id="url" formControlName="url">
+    </div>
+    <div class="form-group">
       <label for="rating">
-        Rating
+        Rating:
       </label>
       <input class="form-control" type="text" id="rating" formControlName="rating">
     </div>

@@ -15,7 +15,8 @@ export class CreateArticleComponent implements OnInit {
     this.articleForm = this.formBuilder.group({
       name: '',
       description: '',
-      rating: 0
+      url: '',
+      rating: ''
     });
   }
 
