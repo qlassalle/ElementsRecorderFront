@@ -1,3 +1,7 @@
+.container a:first-child {
+  float: right;
+}
+
 .article-list {
   margin-top: 30px;
 }
@@ -7,7 +11,7 @@
 }
 
 .article-header {
-  height: 10%;
+  height: 50px;
   background-color: rgba(0,0,0,.03);
   text-align: center;
   padding-top: 10px;
@@ -19,14 +23,18 @@
   text-align: justify;
 }
 
-.article-detail-link {
-  height: 10%;
-}
-
 .article-card {
   margin-bottom: 30px;
 }
 
 .delete-button {
   cursor: pointer;
+}
+
+.card a {
+  text-decoration: none;
+}
+
+.card-title, .card-body {
+  color: black;
 }

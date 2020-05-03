@@ -1,3 +1,33 @@
-.custom-navbar {
-  margin-bottom: 30px;
+nav {
+  background: #999;
+  color: white;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  position: relative;
+  height: 65px;
+}
+
+nav h2 {
+  position: absolute;
+  color: white;
+  top: 15px;
+  left: 0;
+  margin: 0 1rem;
+  display: inline;
+}
+
+.nav-links {
+  position: absolute;
+  top: 20px;
+  right: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: inherit;
+  margin: 0 1rem;
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+  align-items: center;
 }
