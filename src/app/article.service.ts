@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Article} from './model/Article';
+import {environment} from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArticleService {
 
-  private url = 'http://localhost:8080/article';
+  private url = environment.serverUrl + '/article';
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
