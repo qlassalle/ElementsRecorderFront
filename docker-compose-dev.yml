@@ -1,0 +1,8 @@
+version: '3.7'
+
+services:
+  front:
+    build: .
+    ports:
+        - 4200:80
+    container_name: elements_recorder_front

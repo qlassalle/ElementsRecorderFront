@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
 import {Article} from '../model/Article';
 import {ActivatedRoute} from '@angular/router';
-import {ArticleService} from '../article.service';
+import {ArticleService} from '../service/article/article.service';
 
 @Component({
   selector: 'app-article-detail',
