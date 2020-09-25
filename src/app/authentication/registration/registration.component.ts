@@ -1,18 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
-import {RegistrationService} from '../service/registration.service';
+import {AuthenticationService} from '../service/authentication.service';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  styleUrls: ['./registration.component.css', '../shared-authentication.component.css']
 })
 export class RegistrationComponent implements OnInit {
 
-  activeForm = 'sign_up';
   registrationForm;
 
-  constructor(private formBuilder: FormBuilder, private registrationService: RegistrationService) {
+  constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService) {
     this.registrationForm = this.formBuilder.group({
       email: '',
       password: '',
@@ -25,12 +24,6 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit(registrationData) {
     this.registrationForm.reset();
-    this.registrationService.register(registrationData).subscribe();
-  }
-
-  toggleActiveForm(formName: string) {
-    if (this.activeForm !== formName) {
-      this.activeForm = this.activeForm === 'sign_up' ? 'login' : 'sign_up';
-    }
+    this.authenticationService.register(registrationData).subscribe();
   }
 }

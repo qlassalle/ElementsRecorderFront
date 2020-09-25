@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import {RegistrationComponent} from './registration/registration.component';
 import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
 
 
 
 @NgModule({
-  declarations: [RegistrationComponent],
+  declarations: [RegistrationComponent, LoginComponent, AuthenticationComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

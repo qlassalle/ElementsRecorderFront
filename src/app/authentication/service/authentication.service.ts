@@ -5,9 +5,9 @@ import {environment} from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class RegistrationService {
+export class AuthenticationService {
 
-  private url = environment.serverUrl + '/authenticate/register';
+  private url = environment.serverUrl + '/authenticate';
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
@@ -15,6 +15,10 @@ export class RegistrationService {
   constructor(private http: HttpClient) { }
 
   register(registrationData: any) {
-    return this.http.post(this.url, registrationData, this.httpOptions).pipe();
+    return this.http.post(this.url + '/register', registrationData, this.httpOptions).pipe();
+  }
+
+  login(loginData: any) {
+    return this.http.post(this.url + '/', loginData, this.httpOptions).pipe();
   }
 }

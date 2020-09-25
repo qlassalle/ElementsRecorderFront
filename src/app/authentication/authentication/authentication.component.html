@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="registration-div row justify-content-center">
+    <div class="col-12 registration-section">
+      <div class="row registration-header">
+        <div [class.active-form]="activeForm === 'sign_up'" class="col registration-button"
+             (click)="toggleActiveForm('sign_up')">
+          Sign up
+        </div>
+        <div [class.active-form]="activeForm === 'login'" class="col login-button" (click)="toggleActiveForm('login')">
+          Log in
+        </div>
+      </div>
+      <div class="row registration-form-section">
+        <div class="col justify-content-center">
+          <app-registration *ngIf="activeForm==='sign_up'"></app-registration>
+          <app-login *ngIf="activeForm==='login'"></app-login>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

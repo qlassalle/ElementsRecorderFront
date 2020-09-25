@@ -1,0 +1,13 @@
+.authentication-form {
+  padding-top: 1rem;
+  color: white;
+  border-radius: 15px;
+}
+
+.input-field {
+  margin: 0 2rem 2rem 2rem;
+}
+
+.authentication-submit {
+  margin-bottom: 2rem;
+}
