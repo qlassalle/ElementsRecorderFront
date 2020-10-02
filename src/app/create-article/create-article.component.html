@@ -1,8 +1,13 @@
 <div class="container">
   <div class="row">
-    <h3 class="col text-center">
+    <h3 *ngIf="!editMode else edit" class="col text-center">
       You just found an amazing resource? Save it here!
     </h3>
+    <ng-template #edit>
+      <h3 class="col text-center">
+        {{article.name}}
+      </h3>
+    </ng-template>
   </div>
 
   <form [formGroup]="articleForm" (ngSubmit)="onSubmit(articleForm.value)">

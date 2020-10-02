@@ -31,4 +31,8 @@ export class ArticleService {
   delete(id: number) {
     this.http.delete(this.url + '/' + id).pipe().subscribe();
   }
+
+  update(id: number, article: any) {
+    return this.http.put(this.url + '/' + id, article, this.httpOptions).pipe();
+  }
 }

@@ -11,6 +11,7 @@ import {CreateArticleComponent} from './create-article/create-article.component'
 import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 import {AuthenticationModule} from './authentication/authentication.module';
 import {JwtModule} from '@auth0/angular-jwt';
+import {ReadOnlyArticleComponent} from './read-only-article/read-only-article.component';
 
 export function tokenGetter() {
   console.log('Token getter is called!');
@@ -25,6 +26,7 @@ export function tokenGetter() {
     ArticleDetailComponent,
     MenuNavbarComponent,
     CreateArticleComponent,
+    ReadOnlyArticleComponent,
   ],
   imports: [
     BrowserModule,

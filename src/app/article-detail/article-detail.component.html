@@ -1,19 +1,13 @@
 <div class="container">
-  <div *ngIf="article" class="card article-detail-card">
+  <div *ngIf="article && !editMode" class="card article-detail-card">
     <div class="row">
-      <h1 class="col-10">{{article.name}}</h1>
-      <div class="col-2">
-        <i *ngFor="let stars of ratingAsStars()" class="material-icons">stars</i>
+      <div class="col">
+        <i class="material-icons float-right" (click)="switchToEditMode()">edit</i>
       </div>
     </div>
-    <br>
-    <p>{{article.description}}</p>
-    <div class="row">
-      <div class="col text-center">
-        <a href="{{article.url}}" target="_blank" class="btn btn-primary ">
-          Link to the article
-        </a>
-      </div>
-    </div>
+    <app-read-only-article [article]="article"></app-read-only-article>
+  </div>
+  <div *ngIf="article && editMode">
+    <app-create-article [article]="article" [editMode]="editMode" (hasSavedChanges)="onSave($event)"></app-create-article>
   </div>
 </div>

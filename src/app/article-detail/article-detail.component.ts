@@ -11,6 +11,7 @@ import {ArticleService} from '../service/article/article.service';
 export class ArticleDetailComponent implements OnInit {
 
   article: Article;
+  editMode = false;
 
   constructor(private route: ActivatedRoute, private articleService: ArticleService) { }
 
@@ -23,7 +24,12 @@ export class ArticleDetailComponent implements OnInit {
     this.articleService.getArticle(id).subscribe(article => this.article = article);
   }
 
-  ratingAsStars(): number[] {
-    return Array(this.article.rating);
+  switchToEditMode() {
+    this.editMode = !this.editMode;
+  }
+
+  onSave(article: Article) {
+    this.editMode = !this.editMode;
+    this.article = article;
   }
 }
