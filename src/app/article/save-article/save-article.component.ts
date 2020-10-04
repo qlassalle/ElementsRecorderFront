@@ -4,11 +4,11 @@ import {ArticleService} from '../service/article/article.service';
 import {Article} from '../model/Article';
 
 @Component({
-  selector: 'app-create-article',
-  templateUrl: './create-article.component.html',
-  styleUrls: ['./create-article.component.css']
+  selector: 'app-save-article',
+  templateUrl: './save-article.component.html',
+  styleUrls: ['./save-article.component.css']
 })
-export class CreateArticleComponent implements OnInit {
+export class SaveArticleComponent implements OnInit {
 
   @Input()
   article: Article;

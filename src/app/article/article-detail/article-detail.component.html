@@ -8,6 +8,6 @@
     <app-read-only-article [article]="article"></app-read-only-article>
   </div>
   <div *ngIf="article && editMode">
-    <app-create-article [article]="article" [editMode]="editMode" (hasSavedChanges)="onSave($event)"></app-create-article>
+    <app-save-article [article]="article" [editMode]="editMode" (hasSavedChanges)="onSave($event)"></app-save-article>
   </div>
 </div>
