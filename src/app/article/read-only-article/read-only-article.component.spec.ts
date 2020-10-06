@@ -17,7 +17,7 @@ describe('ReadOnlyArticleComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ReadOnlyArticleComponent);
     component = fixture.componentInstance;
-    component.article = ArticleGenerator.oneArticle();
+    component.article = ArticleGenerator.oneFullArticle();
     fixture.detectChanges();
   });
 

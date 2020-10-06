@@ -4,8 +4,10 @@ import {ArticleService} from './article.service';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {Article} from '../../model/Article';
+import {environment} from '../../../../environments/environment';
+import {ArticleGenerator} from '../../../../tests/article/model/ArticleGenerator';
 
-const SERVER_URL = 'http://localhost:8080/article/';
+const SERVER_URL = environment.serverUrl + '/article/';
 
 describe('ArticleService', () => {
   let service: ArticleService;
@@ -29,16 +31,7 @@ describe('ArticleService', () => {
   });
 
   it('can retrieve all articles', () => {
-    const expectedResponse: Article[] =
-      [{
-        id: 1,
-        name: 'Another article',
-        description: 'The new one',
-        rating: 2,
-        url: '',
-        created_at: '2020-09-28T20:22:33.301528Z',
-        updated_at: '2020-09-28T20:22:33.301528Z'
-      }];
+    const expectedResponse: Article[] = ArticleGenerator.oneArticleAsArray();
 
     service.getArticles()
            .subscribe(data => expect(data).toEqual(expectedResponse));
@@ -51,16 +44,7 @@ describe('ArticleService', () => {
   });
 
   it('should return one article', () => {
-    const expectedResponse: Article =
-      {
-        id: 1,
-        name: 'Another article',
-        description: 'The new one',
-        rating: 2,
-        url: '',
-        created_at: '2020-09-28T20:22:33.301528Z',
-        updated_at: '2020-09-28T20:22:33.301528Z'
-      };
+    const expectedResponse: Article = ArticleGenerator.oneFullArticle();
 
     service.getArticle(1)
            .subscribe(data => expect(data).toEqual(expectedResponse));
@@ -88,30 +72,12 @@ describe('ArticleService', () => {
   });
 
   it('Should return the created article when posting to server', () => {
-    const newArticle: Article = {
-      id: 1,
-      name: 'My new article',
-      description: 'The latest resource I found!',
-      rating: 5,
-      url: 'www.amazingresource.com',
-      created_at: null,
-      updated_at: null
-    };
-
-    const expectedResponse: Article = {
-      id: 1,
-      name: 'My new article',
-      description: 'The latest resource I found!',
-      rating: 5,
-      url: 'www.amazingresource.com',
-      created_at: '2020-09-28T20:22:33.301528Z',
-      updated_at: '2020-09-28T20:22:33.301528Z'
-    };
-
+    const newArticle: Article = ArticleGenerator.oneArticleFromForm();
+    const expectedResponse: Article = ArticleGenerator.oneFullArticle();
 
     service.create(newArticle)
-      .subscribe((response) => expect(response).toEqual(expectedResponse),
-                 () => fail('Creation of article should not fail'));
+           .subscribe((response) => expect(response).toEqual(expectedResponse),
+             () => fail('Creation of article should not fail'));
 
     const req = httpTestingController.expectOne(SERVER_URL);
 
