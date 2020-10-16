@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../service/authentication.service';
 import {AccessToken} from '../model/input/AccessToken';
 import {Router} from '@angular/router';
@@ -12,16 +12,16 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm;
+  loginForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService, private router: Router) {
-    this.loginForm = this.formBuilder.group({
-      email: '',
-      password: '',
-    });
   }
 
   ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}')]],
+      password: ['', [Validators.required]],
+    });
   }
 
   onSubmit(loginData) {
@@ -31,4 +31,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  get email() {
+    return this.loginForm.get('email');
+  }
 }

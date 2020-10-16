@@ -4,17 +4,25 @@
     <label for="email">
       Email:
     </label>
-    <input class="form-control" type="email" id="email" formControlName="email">
+    <input class="form-control" type="email" id="email" formControlName="email" required>
+    <div class="alert alert-danger" [hidden]="!(email.invalid && email.touched)" id="email-errors">
+      <div *ngIf="email.errors?.required">
+        Email is required.
+      </div>
+      <div *ngIf="email.errors?.pattern" id="invalid-email">
+        Please provide a valid email.
+      </div>
+    </div>
   </div>
   <div class="form-group input-field">
     <label for="password">
       Password:
     </label>
-    <input class="form-control" type="password" id="password" formControlName="password">
+    <input class="form-control" type="password" id="password" formControlName="password" required>
   </div>
   <div class="row">
     <div class="col text-center">
-      <button class="btn btn-success authentication-submit" type="submit">Login</button>
+      <button class="btn btn-success authentication-submit" type="submit" [disabled]="!loginForm.valid">Login</button>
     </div>
   </div>
 </form>
