@@ -5,22 +5,43 @@
       Email:
     </label>
     <input class="form-control" type="email" id="email" formControlName="email">
+    <div class="alert alert-danger" [hidden]="!(email.invalid && email.touched)" id="email-errors-register">
+      <div *ngIf="email.errors?.required">
+        Email is required.
+      </div>
+      <div *ngIf="email.errors?.pattern" id="invalid-email-register">
+        Please provide a valid email.
+      </div>
+    </div>
   </div>
   <div class="form-group input-field">
     <label for="password">
       Password:
     </label>
     <input class="form-control" type="password" id="password" formControlName="password">
+    <div class="alert alert-danger" [hidden]="!(password.invalid && password.touched)" id="password-errors">
+      <div *ngIf="password.errors?.pattern" id="invalid-password">
+        Your password must contain at least 8 characters, one uppercase letter, one lower case letter, one number and one special character.
+      </div>
+    </div>
   </div>
   <div class="form-group input-field">
     <label for="confirm-password">
       Confirm password:
     </label>
     <input class="form-control" type="password" id="confirm-password" formControlName="confirm_password">
+    <div class="alert alert-danger" [hidden]="!(registrationForm.errors?.mismatch && confirmPassword.touched)" id="confirm-password-errors">
+      <div *ngIf="registrationForm.errors?.mismatch" id="invalid-confirm-password">
+        Passwords don't match.
+      </div>
+    </div>
   </div>
   <div class="row">
     <div class="col text-center">
-      <button class="btn btn-success authentication-submit" type="submit">Register</button>
+      <button class="btn btn-success authentication-submit" id="register-button" type="submit"
+              [disabled]="!registrationForm.valid">
+        Register
+      </button>
     </div>
   </div>
 </form>

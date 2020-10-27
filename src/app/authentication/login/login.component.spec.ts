@@ -5,6 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthenticationService} from '../service/authentication.service';
 import {of} from 'rxjs';
 import {Router} from '@angular/router';
+import {TestCases} from '../registration/TestCases';
 
 describe('LoginComponent', () => {
   const accessToken = 'ey123456.abcdefghi.7890cvbn';
@@ -12,18 +13,6 @@ describe('LoginComponent', () => {
   let fixture: ComponentFixture<LoginComponent>;
   let routerSpy;
   let page: Page;
-
-  const emailTestCases = [
-    {email: 'invalidemailzerzer', hiddenFinalState: false},
-    {email: 'stillinvalid@invalid', hiddenFinalState: false},
-    {email: 'stillinvalid@invalid.', hiddenFinalState: false},
-    {email: 'stillinvalid@invalid.c', hiddenFinalState: false},
-    {email: '@invalid.com', hiddenFinalState: false},
-    {email: 'no white space@invalid.com', hiddenFinalState: false},
-    {email: 'correctemail@gmail.com', hiddenFinalState: true},
-    {email: 'allow_please@yahoo.fr', hiddenFinalState: true},
-    {email: 'numbers12345678900too@hotmail.ru', hiddenFinalState: true},
-  ];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -71,16 +60,16 @@ describe('LoginComponent', () => {
     expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/articles');
   });
 
-  emailTestCases.forEach(({email, hiddenFinalState}) => {
-    it(`when email is ${email} error div should have hidden property: ${hiddenFinalState}`, () => {
+  TestCases.EMAIL.forEach(({email, valid}) => {
+    it(`when email is ${email} error div should have hidden property: ${valid}`, () => {
       const emailInput: HTMLInputElement = page.getEmailInput;
       expect(page.getEmailErrorsDiv.hasAttribute('hidden')).toEqual(true);
       emailInput.value = email;
       emailInput.dispatchEvent(new Event('input'));
       emailInput.dispatchEvent(new Event('blur'));
       fixture.detectChanges();
-      expect(page.getEmailErrorsDiv.hasAttribute('hidden')).toEqual(hiddenFinalState);
-      if (!hiddenFinalState) {
+      expect(page.getEmailErrorsDiv.hasAttribute('hidden')).toEqual(valid);
+      if (!valid) {
         expect(page.getInvalidEmailMessageDiv.textContent.trim()).toEqual('Please provide a valid email.');
       }
     });

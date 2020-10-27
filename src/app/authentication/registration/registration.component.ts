@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../service/authentication.service';
 import {Router} from '@angular/router';
 import {AccessToken} from '../model/input/AccessToken';
 import {HttpErrorResponse} from '@angular/common/http';
+import {SharedConstants} from '../../shared/shared.constants';
 
 @Component({
   selector: 'app-registration',
@@ -16,14 +17,15 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService, private router: Router) {
     this.registrationForm = this.formBuilder.group({
-      email: '',
-      password: '',
+      email: ['', [Validators.required, Validators.pattern(SharedConstants.EMAIL_REGEX)]],
+      password: ['', Validators.pattern(SharedConstants.PASSWORD_REGEX)],
       confirm_password: ''
-    });
+    }, { validators: passwordValidator});
   }
 
   ngOnInit(): void {
   }
+
 
   onSubmit(registrationData) {
     this.authenticationService.register(registrationData).subscribe((data: AccessToken) => {
@@ -34,4 +36,20 @@ export class RegistrationComponent implements OnInit {
         console.log(error);
       });
   }
+
+  get email() {
+    return this.registrationForm.get('email');
+  }
+
+  get password() {
+    return this.registrationForm.get('password');
+  }
+
+  get confirmPassword() {
+    return this.registrationForm.get('confirm_password');
+  }
+}
+
+function passwordValidator(form: FormGroup) {
+  return form.controls.password.value === form.controls.confirm_password.value ? null : {mismatch: true};
 }

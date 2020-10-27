@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../service/authentication.service';
 import {AccessToken} from '../model/input/AccessToken';
 import {Router} from '@angular/router';
+import {SharedConstants} from '../../shared/shared.constants';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}')]],
+      email: ['', [Validators.required, Validators.pattern(SharedConstants.EMAIL_REGEX)]],
       password: ['', [Validators.required]],
     });
   }
