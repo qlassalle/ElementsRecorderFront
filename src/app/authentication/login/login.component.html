@@ -28,4 +28,11 @@
       </button>
     </div>
   </div>
+  <div class="row">
+    <div class="col text-center">
+      <div *ngIf="loginForm.errors?.serverError" class="alert alert-danger" id="server-error">
+        {{ loginForm.errors.serverError }}
+      </div>
+    </div>
+  </div>
 </form>
