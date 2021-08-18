@@ -21,6 +21,6 @@ export class AuthenticationService {
   }
 
   login(loginData: any): Observable<AccessToken> {
-    return this.http.post<AccessToken>(this.url + '/', loginData, this.httpOptions).pipe();
+    return this.http.post<AccessToken>(this.url, loginData, this.httpOptions).pipe();
   }
 }

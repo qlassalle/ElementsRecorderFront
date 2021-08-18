@@ -37,8 +37,11 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('access_token'),
-        allowedDomains: ['localhost:8080'],
-        disallowedRoutes: ['http://localhost:8080/authenticate/', 'http://localhost:8080/authenticate/register']
+        allowedDomains: ['ozxkf3w0u6.execute-api.eu-west-3.amazonaws.com'],
+        disallowedRoutes: ['https://ozxkf3w0u6.execute-api.eu-west-3.amazonaws.com/authenticate',
+          'https://ozxkf3w0u6.execute-api.eu-west-3.amazonaws.com/authenticate/register',
+          'https://ozxkf3w0u6.execute-api.eu-west-3.amazonaws.com/hello'
+        ]
       }
     })
   ],

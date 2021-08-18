@@ -17,6 +17,13 @@ export class ArticleService {
   constructor(private http: HttpClient) { }
 
   public getArticles(): Observable<Article[]> {
+    console.log('Should be latest on prod Hitting on: ' + this.url + '/');
+    this.http
+        .get(environment.serverUrl + '/hello')
+        .pipe()
+        .subscribe(x => {
+          console.log(x);
+        });
     return this.http.get<Article[]>(this.url + '/').pipe();
   }
 
