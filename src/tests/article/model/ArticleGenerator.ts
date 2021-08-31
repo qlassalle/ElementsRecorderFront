@@ -12,7 +12,7 @@ export class ArticleGenerator {
 
   static oneFullArticle(): Article {
     return {
-      id: 1,
+      id: '00000000-0000-0000-0000-000000000001',
       name: 'Another article',
       description: 'The new one',
       rating: 2,
@@ -24,7 +24,7 @@ export class ArticleGenerator {
 
   static oneArticleFromForm(): Article {
     return {
-      id: 1,
+      id: '00000000-0000-0000-0000-000000000001',
       name: 'My new article',
       description: 'The latest resource I found!',
       rating: 5,
@@ -36,7 +36,7 @@ export class ArticleGenerator {
 
   static oneArticleAsArray(): Article[] {
     return [{
-      id: 1,
+      id: '00000000-0000-0000-0000-000000000001',
       name: 'Another article',
       description: 'The new one',
       rating: 2,

@@ -17,17 +17,10 @@ export class ArticleService {
   constructor(private http: HttpClient) { }
 
   public getArticles(): Observable<Article[]> {
-    console.log('Should be latest on prod Hitting on: ' + this.url + '/');
-    this.http
-        .get(environment.serverUrl + '/hello')
-        .pipe()
-        .subscribe(x => {
-          console.log(x);
-        });
     return this.http.get<Article[]>(this.url + '/').pipe();
   }
 
-  getArticle(id: number): Observable<Article> {
+  getArticle(id: string): Observable<Article> {
     return this.http.get<Article>(this.url + '/' + id).pipe();
   }
 
@@ -35,11 +28,11 @@ export class ArticleService {
     return this.http.post(this.url + '/', articleData, this.httpOptions).pipe();
   }
 
-  delete(id: number) {
+  delete(id: string) {
     this.http.delete(this.url + '/' + id).pipe().subscribe();
   }
 
-  update(id: number, article: any) {
+  update(id: string, article: any) {
     return this.http.put(this.url + '/' + id, article, this.httpOptions).pipe();
   }
 }

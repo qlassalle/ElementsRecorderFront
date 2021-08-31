@@ -36,7 +36,7 @@ describe('AuthenticationService', () => {
     service.login(authenticationData)
            .subscribe(data => expect(data).toEqual(expectedResponse));
 
-    const req = httpTestingController.expectOne(SERVER_URL + '/');
+    const req = httpTestingController.expectOne(SERVER_URL);
 
     expect(req.request.method).toEqual('POST');
     expect(req.request.body).toEqual(authenticationData);
@@ -55,7 +55,7 @@ describe('AuthenticationService', () => {
              expect(error.error).toEqual(expectedResponse, 'response');
            });
 
-    const req = httpTestingController.expectOne(SERVER_URL + '/');
+    const req = httpTestingController.expectOne(SERVER_URL);
     expect(req.request.method).toEqual('POST');
     expect(req.request.body).toEqual(authenticationData);
 

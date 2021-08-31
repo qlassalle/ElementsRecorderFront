@@ -46,10 +46,10 @@ describe('ArticleService', () => {
   it('should return one article', () => {
     const expectedResponse: Article = ArticleGenerator.oneFullArticle();
 
-    service.getArticle(1)
+    service.getArticle('00000000-0000-0000-0000-000000000001')
            .subscribe(data => expect(data).toEqual(expectedResponse));
 
-    const req = httpTestingController.expectOne(SERVER_URL + '1');
+    const req = httpTestingController.expectOne(SERVER_URL + '00000000-0000-0000-0000-000000000001');
 
     expect(req.request.method).toEqual('GET');
 
@@ -59,14 +59,14 @@ describe('ArticleService', () => {
   it('should return a 404 when article isn\'t found', () => {
     const expectedResponse = 'No such article exists';
 
-    service.getArticle(2190)
+    service.getArticle('00000000-0000-0000-0000-000000000002')
            .subscribe(() => fail('Should have failed with a 404 error'),
                       (error: HttpErrorResponse) => {
                         expect(error.status).toEqual(404, 'status');
                         expect(error.error).toEqual(expectedResponse, 'response');
            });
 
-    const req = httpTestingController.expectOne(SERVER_URL + '2190');
+    const req = httpTestingController.expectOne(SERVER_URL + '00000000-0000-0000-0000-000000000002');
 
     req.flush(expectedResponse, {status: 404, statusText: 'Not Found'});
   });
