@@ -63,9 +63,8 @@ describe('RegistrationComponent', () => {
 
   TestCases.PASSWORD.forEach(({password, valid}) => {
     it(`When password is ${password} error message should be displayed: ${!valid}`, () => {
-      const passwordInput: HTMLInputElement = page.getInput(TemplateConstants.PASSWORD_INPUT);
       expect(page.getDiv(TemplateConstants.PASSWORD_ERRORS_DIV).hasAttribute('hidden')).toEqual(true);
-      page.setInputAndLoseFocus(passwordInput, password);
+      page.setInputAndLoseFocus(TemplateConstants.PASSWORD_INPUT, password);
       expect(page.getDiv(TemplateConstants.PASSWORD_ERRORS_DIV).hasAttribute('hidden')).toEqual(valid);
       if (!valid) {
         expect(page.getDiv(TemplateConstants.INVALID_PASSWORD_MESSAGE_DIV).textContent.trim())
@@ -80,12 +79,10 @@ describe('RegistrationComponent', () => {
 
 
   it('Should display error message when passwords don\'t match', () => {
-    const passwordInput: HTMLInputElement = page.getInput(TemplateConstants.PASSWORD_INPUT);
-    const confirmPasswordInput: HTMLInputElement = page.getInput(TemplateConstants.CONFIRM_PASSWORD_INPUT);
     expect(page.getDiv(TemplateConstants.PASSWORD_ERRORS_DIV).hasAttribute('hidden')).toEqual(true);
-    page.setInputAndLoseFocus(passwordInput, 'AcorrectPassw0rd.');
+    page.setInputAndLoseFocus(TemplateConstants.PASSWORD_INPUT, 'AcorrectPassw0rd.');
     expect(page.getDiv(TemplateConstants.PASSWORD_ERRORS_DIV).hasAttribute('hidden')).toEqual(true);
-    page.setInputAndLoseFocus(confirmPasswordInput, 'AcorrectPassw0rd!');
+    page.setInputAndLoseFocus(TemplateConstants.CONFIRM_PASSWORD_INPUT, 'AcorrectPassw0rd!');
     expect(page.getDiv(TemplateConstants.PASSWORD_ERRORS_DIV).hasAttribute('hidden')).toEqual(true);
     expect(page.getDiv(TemplateConstants.CONFIRM_PASSWORD_ERRORS_DIV).hasAttribute('hidden')).toEqual(false);
     expect(page.getDiv(TemplateConstants.INVALID_CONFIRM_PASSWORD_ERRORS_DIV).textContent.trim()).toEqual('Passwords don\'t match.');

@@ -23,8 +23,8 @@ export class TestPage<T> {
     return this.query<HTMLDivElement>(identifier);
   }
 
-
-  setInputAndLoseFocus(input: HTMLInputElement, value: string) {
+  setInputAndLoseFocus(inputName: string, value: string) {
+    const input: HTMLInputElement = this.getInput(inputName);
     input.value = value;
     input.dispatchEvent(new Event('input'));
     input.dispatchEvent(new Event('blur'));
@@ -33,9 +33,8 @@ export class TestPage<T> {
 
   testErrorMessageTriggering(inputIdentifier: string, errorDivIdentifier: string, errorMessageDivIdentifier: string, value: any,
                              valid: boolean, expectedErrorMessage: string) {
-    const input: HTMLInputElement = this.getInput(inputIdentifier);
     expect(this.getDiv(errorDivIdentifier).hasAttribute('hidden')).toEqual(true);
-    this.setInputAndLoseFocus(input, value);
+    this.setInputAndLoseFocus(inputIdentifier, value);
     expect(this.getDiv(errorDivIdentifier).hasAttribute('hidden')).toEqual(valid);
     if (!valid) {
       expect(this.getDiv(errorMessageDivIdentifier).textContent.trim()).toEqual(expectedErrorMessage);

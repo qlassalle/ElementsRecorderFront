@@ -47,7 +47,7 @@ describe('LoginComponent', () => {
     authenticationServiceSpy.login.withArgs({email: 'testemail@gmail.com', password: 'wrongpass'})
                             .and
                             .returnValue(asyncError(new HttpErrorResponse(
-                              {status: 403, error: {message: 'The provided password isn\'t correct'}}
+                              {status: 403, error: {message: 'Username or password invalid'}}
                               )));
     routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
     routerSpy.navigateByUrl.and.stub();
@@ -86,7 +86,7 @@ describe('LoginComponent', () => {
     await component.onSubmit(authenticationData);
     fixture.detectChanges();
     expect(localStorage.getItem(accessTokenKey)).toBeNull();
-    expect(page.getDiv(TemplateConstants.SERVER_ERROR_DIV).textContent.trim()).toEqual('The provided password isn\'t correct');
+    expect(page.getDiv(TemplateConstants.SERVER_ERROR_DIV).textContent.trim()).toEqual('Username or password invalid');
     expect(routerSpy.navigateByUrl).toHaveBeenCalledTimes(0);
   });
 

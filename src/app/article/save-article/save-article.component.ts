@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ArticleService} from '../service/article/article.service';
 import {Article} from '../model/Article';
+import {SharedConstants} from '../../shared/shared.constants';
 
 @Component({
   selector: 'app-save-article',
@@ -16,13 +17,13 @@ export class SaveArticleComponent implements OnInit {
   editMode: boolean;
   @Output()
   hasSavedChanges = new EventEmitter<Article>();
-  articleForm;
+  articleForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private articleService: ArticleService) {
     this.articleForm = this.formBuilder.group({
       name: '',
       description: '',
-      url: '',
+      url: ['', [Validators.required, Validators.pattern(SharedConstants.URL_REGEX)]],
       rating: ''
     });
   }
@@ -44,5 +45,9 @@ export class SaveArticleComponent implements OnInit {
         }
       });
     }
+  }
+
+  get url() {
+    return this.articleForm.get('url');
   }
 }
