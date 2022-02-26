@@ -12,6 +12,7 @@ import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 import {AuthenticationModule} from './authentication/authentication.module';
 import {JwtModule} from '@auth0/angular-jwt';
 import {ReadOnlyArticleComponent} from './article/read-only-article/read-only-article.component';
+import {environment} from '../environments/environment';
 
 export function tokenGetter() {
   console.log('Token getter is called!');
@@ -37,7 +38,7 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('access_token'),
-        allowedDomains: ['ozxkf3w0u6.execute-api.eu-west-3.amazonaws.com'],
+        allowedDomains: [environment.allowedDomain],
         disallowedRoutes: ['https://ozxkf3w0u6.execute-api.eu-west-3.amazonaws.com/authenticate',
           'https://ozxkf3w0u6.execute-api.eu-west-3.amazonaws.com/authenticate/register',
           'https://ozxkf3w0u6.execute-api.eu-west-3.amazonaws.com/hello'
