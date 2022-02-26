@@ -1,6 +1,6 @@
 import {TestBed} from '@angular/core/testing';
 
-import {ArticleService} from './article.service';
+import {HttpArticleService} from './http-article.service';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {Article} from '../../model/Article';
@@ -10,7 +10,7 @@ import {ArticleGenerator} from '../../../../tests/article/model/ArticleGenerator
 const SERVER_URL = environment.serverUrl + '/article/';
 
 describe('ArticleService', () => {
-  let service: ArticleService;
+  let service: HttpArticleService;
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
 
@@ -19,7 +19,7 @@ describe('ArticleService', () => {
 
     httpClient = TestBed.inject(HttpClient);
     httpTestingController = TestBed.inject(HttpTestingController);
-    service = TestBed.inject(ArticleService);
+    service = TestBed.inject(HttpArticleService);
   });
 
   afterEach(() => {

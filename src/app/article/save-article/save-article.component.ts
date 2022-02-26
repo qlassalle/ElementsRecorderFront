@@ -1,8 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ArticleService} from '../service/article/article.service';
+import {HttpArticleService} from '../service/article/http-article.service';
 import {Article} from '../model/Article';
 import {SharedConstants} from '../../shared/shared.constants';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-save-article',
@@ -19,7 +20,7 @@ export class SaveArticleComponent implements OnInit {
   hasSavedChanges = new EventEmitter<Article>();
   articleForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private articleService: ArticleService) {
+  constructor(private formBuilder: FormBuilder, private articleService: HttpArticleService, private router: Router) {
     this.articleForm = this.formBuilder.group({
       name: '',
       description: '',
@@ -37,7 +38,11 @@ export class SaveArticleComponent implements OnInit {
   onSubmit(formValue: any) {
     this.articleForm.reset();
     if (this.article == null) {
-      this.articleService.create(formValue).subscribe();
+      this.articleService.create(formValue).subscribe((created: Article) => {
+          this.router.navigateByUrl('/articles/' + created.id);
+      }, () => {
+        this.router.navigateByUrl('/');
+      });
     } else {
       this.articleService.update(this.article.id, formValue).subscribe({
         next: (article: Article) => {

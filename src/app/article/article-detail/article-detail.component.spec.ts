@@ -2,7 +2,7 @@ import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {ArticleDetailComponent} from './article-detail.component';
 import {ActivatedRoute, convertToParamMap} from '@angular/router';
-import {ArticleService} from '../service/article/article.service';
+import {HttpArticleService} from '../service/article/http-article.service';
 import {ArticleGenerator} from '../../../tests/article/model/ArticleGenerator';
 
 describe('ArticleDetailComponent', () => {
@@ -21,7 +21,7 @@ describe('ArticleDetailComponent', () => {
       declarations: [ArticleDetailComponent],
       providers: [
         {provide: ActivatedRoute, useValue: activatedRouteMock},
-        {provide: ArticleService, useValue: articleServiceSpy}
+        {provide: HttpArticleService, useValue: articleServiceSpy}
       ]
     })
            .compileComponents();

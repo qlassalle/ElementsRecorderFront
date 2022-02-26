@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Article} from '../model/Article';
 import {ActivatedRoute} from '@angular/router';
-import {ArticleService} from '../service/article/article.service';
+import {HttpArticleService} from '../service/article/http-article.service';
 
 @Component({
   selector: 'app-article-detail',
@@ -13,7 +13,7 @@ export class ArticleDetailComponent implements OnInit {
   article: Article;
   editMode = false;
 
-  constructor(private route: ActivatedRoute, private articleService: ArticleService) { }
+  constructor(private route: ActivatedRoute, private articleService: HttpArticleService) { }
 
   ngOnInit(): void {
     this.getArticle();

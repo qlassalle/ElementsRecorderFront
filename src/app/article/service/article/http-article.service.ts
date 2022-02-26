@@ -3,11 +3,12 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Article} from '../../model/Article';
 import {environment} from '../../../../environments/environment';
+import {ArticleService} from './ArticleService';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ArticleService {
+export class HttpArticleService implements ArticleService {
 
   private url = environment.serverUrl + '/article';
   httpOptions = {

@@ -23,7 +23,7 @@ export class TestPage<T> {
     return this.query<HTMLDivElement>(identifier);
   }
 
-  setInputAndLoseFocus(inputName: string, value: string) {
+  setInputAndLoseFocus(inputName: string, value) {
     const input: HTMLInputElement = this.getInput(inputName);
     input.value = value;
     input.dispatchEvent(new Event('input'));

@@ -1,3 +1,10 @@
+# TODO
+* handle creation failure
+* rename service route
+* use DI correctly for ArticleService
+* remove mock for services
+* delete article should show confirmation + be in a separate div to stop going on details page
+
 # ElementsRecorder
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
