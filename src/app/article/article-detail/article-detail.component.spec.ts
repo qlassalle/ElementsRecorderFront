@@ -3,15 +3,13 @@ import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {ArticleDetailComponent} from './article-detail.component';
 import {ActivatedRoute, convertToParamMap} from '@angular/router';
 import {HttpArticleService} from '../service/article/http-article.service';
-import {ArticleGenerator} from '../../../tests/article/model/ArticleGenerator';
+import {InMemoryArticleService} from '../service/article/in-memory-article.service';
 
 describe('ArticleDetailComponent', () => {
   let component: ArticleDetailComponent;
   let fixture: ComponentFixture<ArticleDetailComponent>;
 
   beforeEach(waitForAsync(() => {
-    const articleServiceSpy = jasmine.createSpyObj('ArticleService', ['get']);
-    articleServiceSpy.get.and.returnValue(ArticleGenerator.observableOfOneArticle());
     const activatedRouteMock = {
       snapshot: {
         paramMap: convertToParamMap({id: '1'})
@@ -21,7 +19,7 @@ describe('ArticleDetailComponent', () => {
       declarations: [ArticleDetailComponent],
       providers: [
         {provide: ActivatedRoute, useValue: activatedRouteMock},
-        {provide: HttpArticleService, useValue: articleServiceSpy}
+        {provide: HttpArticleService, useValue: new InMemoryArticleService()}
       ]
     })
            .compileComponents();

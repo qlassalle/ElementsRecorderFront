@@ -39,7 +39,7 @@ export class SaveArticleComponent implements OnInit {
     this.articleForm.reset();
     if (this.article == null) {
       this.articleService.create(formValue).subscribe((created: Article) => {
-          this.router.navigateByUrl('/articles/' + created.id);
+        this.router.navigateByUrl('/articles/' + created.id);
       }, () => {
         this.router.navigateByUrl('/');
       });

@@ -2,18 +2,16 @@ import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {ArticlesComponent} from './articles.component';
 import {HttpArticleService} from '../service/article/http-article.service';
-import {ArticleGenerator} from '../../../tests/article/model/ArticleGenerator';
+import {InMemoryArticleService} from '../service/article/in-memory-article.service';
 
 describe('ArticlesComponent', () => {
   let component: ArticlesComponent;
   let fixture: ComponentFixture<ArticlesComponent>;
 
   beforeEach(waitForAsync(() => {
-    const articleServiceSpy = jasmine.createSpyObj('ArticleService', ['getAll']);
-    articleServiceSpy.getAll.and.returnValue(ArticleGenerator.observableOfOneArticleAsArray());
     TestBed.configureTestingModule({
       declarations: [ ArticlesComponent ],
-      providers: [{provide: HttpArticleService, useValue: articleServiceSpy}]
+      providers: [{provide: HttpArticleService, useValue: new InMemoryArticleService()}]
     })
     .compileComponents();
   }));

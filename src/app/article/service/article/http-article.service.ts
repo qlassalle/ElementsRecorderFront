@@ -25,8 +25,8 @@ export class HttpArticleService implements ArticleService {
     return this.http.get<Article>(this.url + '/' + id).pipe();
   }
 
-  create(articleData: any) {
-    return this.http.post(this.url + '/', articleData, this.httpOptions).pipe();
+  create(articleData: any): Observable<Article> {
+    return this.http.post(this.url + '/', articleData, this.httpOptions).pipe() as Observable<Article>;
   }
 
   delete(id: string) {

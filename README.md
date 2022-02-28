@@ -1,8 +1,6 @@
 # TODO
 * handle creation failure
-* rename service route
 * use DI correctly for ArticleService
-* remove mock for services
 * delete article should show confirmation + be in a separate div to stop going on details page
 
 # ElementsRecorder

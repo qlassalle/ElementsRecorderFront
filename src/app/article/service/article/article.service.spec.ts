@@ -13,6 +13,7 @@ describe('ArticleService', () => {
   let service: HttpArticleService;
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
+  const articleGenerator: ArticleGenerator = new ArticleGenerator();
 
   beforeEach(() => {
     TestBed.configureTestingModule({imports: [HttpClientTestingModule]});
@@ -31,7 +32,8 @@ describe('ArticleService', () => {
   });
 
   it('can retrieve all articles', () => {
-    const expectedResponse: Article[] = ArticleGenerator.oneArticleAsArray();
+    let expectedResponse: Article[];
+    articleGenerator.observableOfOneArticleAsArray().subscribe(article => expectedResponse = article);
 
     service.getAll()
            .subscribe(data => expect(data).toEqual(expectedResponse));
@@ -44,7 +46,8 @@ describe('ArticleService', () => {
   });
 
   it('should return one article', () => {
-    const expectedResponse: Article = ArticleGenerator.oneFullArticle();
+    let expectedResponse: Article;
+    articleGenerator.observableOfOneArticle().subscribe(article => expectedResponse = article);
 
     service.get('00000000-0000-0000-0000-000000000001')
            .subscribe(data => expect(data).toEqual(expectedResponse));
@@ -72,8 +75,9 @@ describe('ArticleService', () => {
   });
 
   it('Should return the created article when posting to server', () => {
-    const newArticle: Article = ArticleGenerator.oneArticleFromForm();
-    const expectedResponse: Article = ArticleGenerator.oneFullArticle();
+    const newArticle: Article = articleGenerator.oneArticleFromForm();
+    let expectedResponse: Article;
+    articleGenerator.observableOfOneArticle().subscribe(article => expectedResponse = article);
 
     service.create(newArticle)
            .subscribe((response) => expect(response).toEqual(expectedResponse),

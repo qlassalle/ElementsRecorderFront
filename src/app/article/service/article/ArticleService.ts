@@ -3,6 +3,7 @@ import {Article} from '../../model/Article';
 
 export interface ArticleService {
 
+  get(id: string): Observable<Article>;
   getAll(): Observable<Article[]>;
-  create(article: any);
+  create(article: any): Observable<Article>;
 }

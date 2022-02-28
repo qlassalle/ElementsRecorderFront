@@ -10,6 +10,7 @@ interface InMemoryFields {
 export class InMemoryArticleService implements ArticleService, InMemoryFields {
 
   lastCreatedArticle;
+  articleGenerator: ArticleGenerator = new ArticleGenerator();
 
   getAll(): Observable<Article[]> {
     return of([]);
@@ -17,6 +18,10 @@ export class InMemoryArticleService implements ArticleService, InMemoryFields {
 
   create(article: any) {
     this.lastCreatedArticle = article;
-    return of(ArticleGenerator.oneFullArticle());
+    return this.articleGenerator.observableOfOneArticle();
+  }
+
+  get(id: string): Observable<Article> {
+    return this.articleGenerator.observableOfOneArticle();
   }
 }
