@@ -17,11 +17,11 @@ export class HttpArticleService implements ArticleService {
 
   constructor(private http: HttpClient) { }
 
-  public getArticles(): Observable<Article[]> {
+  getAll(): Observable<Article[]> {
     return this.http.get<Article[]>(this.url + '/').pipe();
   }
 
-  getArticle(id: string): Observable<Article> {
+  get(id: string): Observable<Article> {
     return this.http.get<Article>(this.url + '/' + id).pipe();
   }
 

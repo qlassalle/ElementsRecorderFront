@@ -11,7 +11,7 @@ export class InMemoryArticleService implements ArticleService, InMemoryFields {
 
   lastCreatedArticle;
 
-  getArticles(): Observable<Article[]> {
+  getAll(): Observable<Article[]> {
     return of([]);
   }
 

@@ -10,8 +10,8 @@ describe('ArticleDetailComponent', () => {
   let fixture: ComponentFixture<ArticleDetailComponent>;
 
   beforeEach(waitForAsync(() => {
-    const articleServiceSpy = jasmine.createSpyObj('ArticleService', ['getArticle']);
-    articleServiceSpy.getArticle.and.returnValue(ArticleGenerator.observableOfOneArticle());
+    const articleServiceSpy = jasmine.createSpyObj('ArticleService', ['get']);
+    articleServiceSpy.get.and.returnValue(ArticleGenerator.observableOfOneArticle());
     const activatedRouteMock = {
       snapshot: {
         paramMap: convertToParamMap({id: '1'})

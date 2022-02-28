@@ -33,7 +33,7 @@ describe('ArticleService', () => {
   it('can retrieve all articles', () => {
     const expectedResponse: Article[] = ArticleGenerator.oneArticleAsArray();
 
-    service.getArticles()
+    service.getAll()
            .subscribe(data => expect(data).toEqual(expectedResponse));
 
     const req = httpTestingController.expectOne(SERVER_URL);
@@ -46,7 +46,7 @@ describe('ArticleService', () => {
   it('should return one article', () => {
     const expectedResponse: Article = ArticleGenerator.oneFullArticle();
 
-    service.getArticle('00000000-0000-0000-0000-000000000001')
+    service.get('00000000-0000-0000-0000-000000000001')
            .subscribe(data => expect(data).toEqual(expectedResponse));
 
     const req = httpTestingController.expectOne(SERVER_URL + '00000000-0000-0000-0000-000000000001');
@@ -59,7 +59,7 @@ describe('ArticleService', () => {
   it('should return a 404 when article isn\'t found', () => {
     const expectedResponse = 'No such article exists';
 
-    service.getArticle('00000000-0000-0000-0000-000000000002')
+    service.get('00000000-0000-0000-0000-000000000002')
            .subscribe(() => fail('Should have failed with a 404 error'),
                       (error: HttpErrorResponse) => {
                         expect(error.status).toEqual(404, 'status');

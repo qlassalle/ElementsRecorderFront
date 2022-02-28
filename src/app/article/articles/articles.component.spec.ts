@@ -9,8 +9,8 @@ describe('ArticlesComponent', () => {
   let fixture: ComponentFixture<ArticlesComponent>;
 
   beforeEach(waitForAsync(() => {
-    const articleServiceSpy = jasmine.createSpyObj('ArticleService', ['getArticles']);
-    articleServiceSpy.getArticles.and.returnValue(ArticleGenerator.observableOfOneArticleAsArray());
+    const articleServiceSpy = jasmine.createSpyObj('ArticleService', ['getAll']);
+    articleServiceSpy.getAll.and.returnValue(ArticleGenerator.observableOfOneArticleAsArray());
     TestBed.configureTestingModule({
       declarations: [ ArticlesComponent ],
       providers: [{provide: HttpArticleService, useValue: articleServiceSpy}]
