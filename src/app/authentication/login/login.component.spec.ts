@@ -1,14 +1,12 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {LoginComponent} from './login.component';
-import {FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AuthenticationService} from '../service/authentication.service';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpAuthenticationService} from '../service/http-authentication.service';
 import {Router} from '@angular/router';
 import {TestCases} from '../registration/TestCases';
 import {TestPage} from '../../shared/TestPage';
-import {HttpErrorResponse} from '@angular/common/http';
-import {asyncData, asyncError} from '../../shared/async-observable-helpers';
-import {stringify} from 'querystring';
+import {InMemoryAuthenticationService} from '../service/in-memory-authentication.service';
 
 describe('LoginComponent', () => {
   const accessTokenKey = 'access_token';
@@ -19,10 +17,12 @@ describe('LoginComponent', () => {
   let page: TestPage<LoginComponent>;
 
   beforeEach(waitForAsync(() => {
+    routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
+    routerSpy.navigateByUrl.and.stub();
     TestBed.configureTestingModule({
        declarations: [LoginComponent],
        providers: [
-         {provide: AuthenticationService, useValue: initMocks()},
+         {provide: HttpAuthenticationService, useValue: new InMemoryAuthenticationService()},
          {provide: Router, useValue: routerSpy}
        ],
       imports: [ReactiveFormsModule, FormsModule]
@@ -38,21 +38,6 @@ describe('LoginComponent', () => {
     page = new TestPage<LoginComponent>(fixture);
     fixture.detectChanges();
   });
-
-  function initMocks() {
-    const authenticationServiceSpy = jasmine.createSpyObj('AuthenticationService', ['login']);
-    authenticationServiceSpy.login.withArgs({email: 'testemail@gmail.com', password: 'Passw0rd.'})
-                            .and
-                            .returnValue(asyncData({access_token: accessToken}));
-    authenticationServiceSpy.login.withArgs({email: 'testemail@gmail.com', password: 'wrongpass'})
-                            .and
-                            .returnValue(asyncError(new HttpErrorResponse(
-                              {status: 403, error: {message: 'Username or password invalid'}}
-                              )));
-    routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
-    routerSpy.navigateByUrl.and.stub();
-    return authenticationServiceSpy;
-  }
 
   it('should create', () => {
     expect(component).toBeTruthy();

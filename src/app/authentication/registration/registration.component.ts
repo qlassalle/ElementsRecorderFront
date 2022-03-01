@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthenticationService} from '../service/authentication.service';
+import {HttpAuthenticationService} from '../service/http-authentication.service';
 import {Router} from '@angular/router';
 import {AccessToken} from '../model/input/AccessToken';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -15,7 +15,7 @@ export class RegistrationComponent implements OnInit {
 
   registrationForm;
 
-  constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private authenticationService: HttpAuthenticationService, private router: Router) {
     this.registrationForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.pattern(SharedConstants.EMAIL_REGEX)]],
       password: ['', Validators.pattern(SharedConstants.PASSWORD_REGEX)],

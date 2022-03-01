@@ -1,6 +1,6 @@
 import {TestBed} from '@angular/core/testing';
 
-import {AuthenticationService} from './authentication.service';
+import {HttpAuthenticationService} from './http-authentication.service';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {AccessToken} from '../model/input/AccessToken';
@@ -9,7 +9,7 @@ import {environment} from '../../../environments/environment';
 const SERVER_URL = environment.serverUrl + '/authenticate';
 
 describe('AuthenticationService', () => {
-  let service: AuthenticationService;
+  let service: HttpAuthenticationService;
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
 
@@ -18,7 +18,7 @@ describe('AuthenticationService', () => {
 
     httpClient = TestBed.inject(HttpClient);
     httpTestingController = TestBed.inject(HttpTestingController);
-    service = TestBed.inject(AuthenticationService);
+    service = TestBed.inject(HttpAuthenticationService);
   });
 
   afterEach(() => {
