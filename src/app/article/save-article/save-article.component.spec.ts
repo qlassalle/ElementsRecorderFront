@@ -2,10 +2,11 @@ import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {SaveArticleComponent} from './save-article.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpArticleService} from '../service/article/http-article.service';
 import {TestPage} from '../../shared/TestPage';
 import {InMemoryArticleService} from '../service/article/in-memory-article.service';
 import {Router} from '@angular/router';
+import {ArticleService} from '../service/article/ArticleService';
+import {Article} from '../model/Article';
 
 describe('SaveArticleComponent', () => {
   const articleService: InMemoryArticleService = new InMemoryArticleService();
@@ -20,7 +21,7 @@ describe('SaveArticleComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ SaveArticleComponent ],
       providers: [
-        {provide: HttpArticleService, useValue: articleService},
+        {provide: ArticleService, useValue: articleService},
         {provide: Router, useValue: routerSpy}
       ],
       imports: [ReactiveFormsModule, FormsModule]
@@ -59,7 +60,7 @@ describe('SaveArticleComponent', () => {
 
     page.getButton(TemplateConstants.SUBMIT_BUTTON).click();
 
-    expect(articleService.lastCreatedArticle).toEqual(article);
+    expect(articleService.articles.length).toEqual(1);
     expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/articles/00000000-0000-0000-0000-000000000001');
   });
 

@@ -29,11 +29,11 @@ export class HttpArticleService implements ArticleService {
     return this.http.post(this.url + '/', articleData, this.httpOptions).pipe() as Observable<Article>;
   }
 
-  delete(id: string) {
+  delete(id: string): void {
     this.http.delete(this.url + '/' + id).pipe().subscribe();
   }
 
-  update(id: string, article: any) {
-    return this.http.put(this.url + '/' + id, article, this.httpOptions).pipe();
+  update(id: string, article: any): Observable<Article> {
+    return this.http.put(this.url + '/' + id, article, this.httpOptions).pipe() as Observable<Article>;
   }
 }

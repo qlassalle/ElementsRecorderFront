@@ -1,9 +1,11 @@
 import {Observable} from 'rxjs';
 import {Article} from '../../model/Article';
 
-export interface ArticleService {
+export abstract class ArticleService {
 
-  get(id: string): Observable<Article>;
-  getAll(): Observable<Article[]>;
-  create(article: any): Observable<Article>;
+  abstract create(article: any): Observable<Article>;
+  abstract get(id: string): Observable<Article>;
+  abstract getAll(): Observable<Article[]>;
+  abstract update(id: string, article: any): Observable<Article>;
+  abstract delete(id: string): void;
 }

@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {HttpArticleService} from '../service/article/http-article.service';
 import {Article} from '../model/Article';
 import {SharedConstants} from '../../shared/shared.constants';
 import {Router} from '@angular/router';
+import {ArticleService} from '../service/article/ArticleService';
 
 @Component({
   selector: 'app-save-article',
@@ -20,7 +20,7 @@ export class SaveArticleComponent implements OnInit {
   hasSavedChanges = new EventEmitter<Article>();
   articleForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private articleService: HttpArticleService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private articleService: ArticleService, private router: Router) {
     this.articleForm = this.formBuilder.group({
       name: '',
       description: '',

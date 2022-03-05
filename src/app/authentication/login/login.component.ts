@@ -5,6 +5,7 @@ import {AccessToken} from '../model/input/AccessToken';
 import {Router} from '@angular/router';
 import {SharedConstants} from '../../shared/shared.constants';
 import {HttpErrorResponse} from '@angular/common/http';
+import {AuthenticationService} from '../service/AuthenticationService';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   variable = 'abc';
 
-  constructor(private formBuilder: FormBuilder, private authenticationService: HttpAuthenticationService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService, private router: Router) {
   }
 
   ngOnInit(): void {

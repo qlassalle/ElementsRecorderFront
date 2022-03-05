@@ -2,10 +2,11 @@ import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {LoginComponent} from './login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpAuthenticationService} from '../service/http-authentication.service';
 import {Router} from '@angular/router';
 import {TestCases} from '../registration/TestCases';
 import {TestPage} from '../../shared/TestPage';
+import {AuthenticationService} from '../service/AuthenticationService';
+import {authenticationServiceFactory} from '../service/AuthenticationServiceFactory';
 import {InMemoryAuthenticationService} from '../service/in-memory-authentication.service';
 
 describe('LoginComponent', () => {
@@ -22,7 +23,7 @@ describe('LoginComponent', () => {
     TestBed.configureTestingModule({
        declarations: [LoginComponent],
        providers: [
-         {provide: HttpAuthenticationService, useValue: new InMemoryAuthenticationService()},
+         {provide: AuthenticationService, useValue: new InMemoryAuthenticationService()},
          {provide: Router, useValue: routerSpy}
        ],
       imports: [ReactiveFormsModule, FormsModule]

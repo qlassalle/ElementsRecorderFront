@@ -2,7 +2,11 @@ import {AuthenticationService} from './AuthenticationService';
 import {Observable, of, throwError} from 'rxjs';
 import {AccessToken} from '../model/input/AccessToken';
 import {HttpErrorResponse} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 
+@Injectable({
+  providedIn: 'root'
+})
 export class InMemoryAuthenticationService implements AuthenticationService {
 
   private readonly accessToken = 'ey123456.abcdefghi.7890cvbn';

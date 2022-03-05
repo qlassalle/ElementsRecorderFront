@@ -4,6 +4,7 @@ import {ArticleDetailComponent} from './article-detail.component';
 import {ActivatedRoute, convertToParamMap} from '@angular/router';
 import {HttpArticleService} from '../service/article/http-article.service';
 import {InMemoryArticleService} from '../service/article/in-memory-article.service';
+import {ArticleService} from '../service/article/ArticleService';
 
 describe('ArticleDetailComponent', () => {
   let component: ArticleDetailComponent;
@@ -19,7 +20,7 @@ describe('ArticleDetailComponent', () => {
       declarations: [ArticleDetailComponent],
       providers: [
         {provide: ActivatedRoute, useValue: activatedRouteMock},
-        {provide: HttpArticleService, useValue: new InMemoryArticleService()}
+        {provide: ArticleService, useValue: new InMemoryArticleService()}
       ]
     })
            .compileComponents();
