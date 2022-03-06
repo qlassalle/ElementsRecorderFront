@@ -38,3 +38,7 @@
 .card-title, .card-body {
   color: black;
 }
+
+#add_article {
+  margin-bottom: 20px;
+}

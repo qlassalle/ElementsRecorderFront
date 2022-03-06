@@ -6,13 +6,17 @@ export class InMemoryArticleService implements ArticleService {
 
   articles: Article[] = [];
 
+  constructor() {
+    this.articles = JSON.parse(localStorage.getItem('articles')) as Article[] ?? [];
+  }
+
   getAll(): Observable<Article[]> {
     return of(this.articles);
   }
 
   create(article: any): Observable<Article> {
     const createdArticle: Article = {
-      id: '00000000-0000-0000-0000-000000000001',
+      id: '00000000-0000-0000-0000-00000000000' + (this.articles.length + 1),
       name: article.name,
       description: article.description,
       rating: +article.rating,
@@ -21,6 +25,7 @@ export class InMemoryArticleService implements ArticleService {
       updated_at: '2020-09-28T20:22:33.301528Z'
     };
     this.articles.push(createdArticle);
+    this.updateLocalStorage();
     return of(createdArticle);
   }
 
@@ -30,9 +35,14 @@ export class InMemoryArticleService implements ArticleService {
 
   delete(id: string): void {
     this.articles = this.articles.filter(article => article.id !== id);
+    this.updateLocalStorage();
   }
 
   update(id: string, article: any): Observable<Article> {
     return undefined;
+  }
+
+  private updateLocalStorage() {
+    localStorage.setItem('articles', JSON.stringify(this.articles));
   }
 }

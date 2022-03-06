@@ -6,7 +6,6 @@ import {TestPage} from '../../shared/TestPage';
 import {InMemoryArticleService} from '../service/article/in-memory-article.service';
 import {Router} from '@angular/router';
 import {ArticleService} from '../service/article/ArticleService';
-import {Article} from '../model/Article';
 
 describe('SaveArticleComponent', () => {
   const articleService: InMemoryArticleService = new InMemoryArticleService();
