@@ -36,12 +36,11 @@ export class SaveArticleComponent implements OnInit {
   }
 
   onSubmit(formValue: any) {
-    this.articleForm.reset();
     if (this.article == null) {
       this.articleService.create(formValue).subscribe((created: Article) => {
         this.router.navigateByUrl('/articles/' + created.id);
-      }, () => {
-        this.router.navigateByUrl('/');
+      }, (error) => {
+        this.articleForm.setErrors({serverError: error.error.message});
       });
     } else {
       this.articleService.update(this.article.id, formValue).subscribe({

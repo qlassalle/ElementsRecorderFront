@@ -1,6 +1,4 @@
 # TODO
-* handle creation failure
-* use DI correctly for ArticleService
 * Delete should become its own component delete article should show confirmation + be in a separate div to stop going on
   details page + show a toast to indicate if deletion worked or not.
 

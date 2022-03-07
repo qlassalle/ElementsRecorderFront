@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {HttpAuthenticationService} from '../service/http-authentication.service';
 import {AccessToken} from '../model/input/AccessToken';
 import {Router} from '@angular/router';
 import {SharedConstants} from '../../shared/shared.constants';
@@ -16,7 +15,6 @@ import {AuthenticationService} from '../service/AuthenticationService';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  variable = 'abc';
 
   constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService, private router: Router) {
   }

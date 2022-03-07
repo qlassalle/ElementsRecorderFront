@@ -8,19 +8,19 @@ import {Router} from '@angular/router';
 import {ArticleService} from '../service/article/ArticleService';
 
 describe('SaveArticleComponent', () => {
-  const articleService: InMemoryArticleService = new InMemoryArticleService();
   let component: SaveArticleComponent;
   let fixture: ComponentFixture<SaveArticleComponent>;
   let page: TestPage<SaveArticleComponent>;
   let routerSpy;
 
   beforeEach(waitForAsync(() => {
+    localStorage.clear();
     routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
     routerSpy.navigateByUrl.and.stub();
     TestBed.configureTestingModule({
       declarations: [ SaveArticleComponent ],
       providers: [
-        {provide: ArticleService, useValue: articleService},
+        {provide: ArticleService, useValue: new InMemoryArticleService()},
         {provide: Router, useValue: routerSpy}
       ],
       imports: [ReactiveFormsModule, FormsModule]
@@ -45,23 +45,42 @@ describe('SaveArticleComponent', () => {
   });
 
   it('should display error message when url input has been touched but is still empty', async () => {
-    // page.setInputAndLoseFocus(TemplateConstants.URL_INPUT_IDENTIFIER, '');
     page.testErrorMessageTriggering(TemplateConstants.URL_INPUT_ID, TemplateConstants.ERROR_DIV_ID,
-      TemplateConstants.REQUIRED_URL_ID, '' , false, 'URL is required.');
+      TemplateConstants.REQUIRED_URL_ID, '', false, 'URL is required.');
   });
 
   it('should create article when correct', async () => {
     const article = {name: 'Nebular', description: 'UI library', url: 'https://www.nebular.io', rating: '5'};
+    fillAndSubmitForm(article);
+
+    expect(getArticlesFromLocalStorage().length).toEqual(1);
+    expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/articles/00000000-0000-0000-0000-000000000001');
+  });
+
+  it('should display an error toast when backend fails', async () => {
+    const article = {name: 'Foojay', description: 'Java blog', url: 'https://www.foojay.io', rating: '5'};
+    fillAndSubmitForm(article);
+
+    expect(page.getInput(TemplateConstants.NAME_INPUT_ID).value).toEqual(article.name);
+    expect(getArticlesFromLocalStorage()).toBeNull();
+    expect(page.getDiv(TemplateConstants.SERVER_ERROR_DIV_ID)).not.toBeNull();
+    expect(routerSpy.navigateByUrl).toHaveBeenCalledTimes(0);
+  });
+
+  function fillAndSubmitForm(article: { name: string; rating: string; description: string; url: string }) {
     page.setInputAndLoseFocus(TemplateConstants.NAME_INPUT_ID, article.name);
     page.setInputAndLoseFocus(TemplateConstants.DESCRIPTION_INPUT_ID, article.description);
     page.setInputAndLoseFocus(TemplateConstants.URL_INPUT_ID, article.url);
     page.setInputAndLoseFocus(TemplateConstants.RATING_INPUT_ID, article.rating);
 
-    page.getButton(TemplateConstants.SUBMIT_BUTTON).click();
+    page.getButton(TemplateConstants.SUBMIT_BUTTON)
+        .click();
+    fixture.detectChanges();
+  }
 
-    expect(articleService.articles.length).toEqual(1);
-    expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/articles/00000000-0000-0000-0000-000000000001');
-  });
+  function getArticlesFromLocalStorage() {
+    return JSON.parse(localStorage.getItem('articles'));
+  }
 
   class TemplateConstants {
     static NAME_INPUT_ID = '#name';
@@ -71,6 +90,7 @@ describe('SaveArticleComponent', () => {
     static ERROR_DIV_ID = '#url-errors-create-article';
     static INVALID_URL_DIV_ID = '#invalid-url-create-article';
     static REQUIRED_URL_ID = '#required-url-create-article';
+    static SERVER_ERROR_DIV_ID = '#server-error';
     static SUBMIT_BUTTON = '#submit';
   }
 });

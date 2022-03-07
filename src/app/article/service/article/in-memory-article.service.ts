@@ -1,6 +1,7 @@
 import {ArticleService} from './ArticleService';
-import {Observable, of} from 'rxjs';
+import {Observable, of, throwError} from 'rxjs';
 import {Article} from '../../model/Article';
+import {HttpErrorResponse} from '@angular/common/http';
 
 export class InMemoryArticleService implements ArticleService {
 
@@ -15,6 +16,13 @@ export class InMemoryArticleService implements ArticleService {
   }
 
   create(article: any): Observable<Article> {
+    if (article.name === 'Foojay') {
+      return throwError(new HttpErrorResponse({
+        status: 500,
+        error: {message: 'Unable to reach backend, please try again in a few minutes.'}
+      }));
+    }
+
     const createdArticle: Article = {
       id: '00000000-0000-0000-0000-00000000000' + (this.articles.length + 1),
       name: article.name,

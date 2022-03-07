@@ -45,6 +45,13 @@
     </div>
     <div class="row">
       <div class="col text-center">
+        <div *ngIf="articleForm.errors?.serverError" class="alert alert-danger" id="server-error">
+          {{ articleForm.errors.serverError }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
         <button class="btn btn-success" type="submit" id="submit">Save</button>
       </div>
     </div>
