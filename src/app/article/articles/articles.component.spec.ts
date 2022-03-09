@@ -5,6 +5,7 @@ import {InMemoryArticleService} from '../service/article/in-memory-article.servi
 import {ArticleService} from '../service/article/ArticleService';
 import {ArticleGenerator} from '../../../tests/article/model/ArticleGenerator';
 import {TestPage} from '../../shared/TestPage';
+import {DeleteArticleComponent} from '../delete-article/delete-article.component';
 
 describe('ArticlesComponent', () => {
   const articleGenerator: ArticleGenerator = new ArticleGenerator();
@@ -15,7 +16,7 @@ describe('ArticlesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ArticlesComponent],
+      declarations: [ArticlesComponent, DeleteArticleComponent],
       providers: [{provide: ArticleService, useValue: articleService}]
     })
     .compileComponents();
@@ -33,18 +34,14 @@ describe('ArticlesComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should delete article - component only', () => {
+  it('should delete article', () => {
     expect(articleService.articles.length).toEqual(1);
-    component.delete(articleGenerator.oneArticle().id);
-    expect(articleService.articles.length).toEqual(0);
-  });
-
-  it('should delete article from DOM', () => {
-    expect(articleService.articles.length).toEqual(1);
+    expect(component.articles.length).toEqual(1);
 
     page.getButton('#delete-article-' + articleGenerator.oneArticle().id).click();
     fixture.detectChanges();
 
     expect(articleService.articles.length).toEqual(0);
+    expect(component.articles.length).toEqual(0);
   });
 });

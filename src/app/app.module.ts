@@ -15,10 +15,9 @@ import {ReadOnlyArticleComponent} from './article/read-only-article/read-only-ar
 import {environment} from '../environments/environment';
 import {ArticleService} from './article/service/article/ArticleService';
 import {articleServiceFactory} from './article/service/article/ArticleServiceFactory';
+import {ArticleModule} from './article/article.module';
 
 export function tokenGetter() {
-  console.log('Token getter is called!');
-  console.log(localStorage.getItem('access_token'));
   return localStorage.getItem('access_token');
 }
 
@@ -46,7 +45,8 @@ export function tokenGetter() {
           'https://ozxkf3w0u6.execute-api.eu-west-3.amazonaws.com/hello'
         ]
       }
-    })
+    }),
+    ArticleModule
   ],
   providers: [
     FormBuilder,

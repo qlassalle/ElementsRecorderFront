@@ -16,19 +16,17 @@
               {{article.description}}
             </p>
           </div>
-          <div class="card-footer text-muted">
-            <div class="row">
-              <div class="col-10">
-                <i *ngFor="let stars of ratingAsStars(article.rating)" class="material-icons">stars</i>
-              </div>
-              <div class="col-2">
-                <i class="material-icons delete-button" id="delete-article-{{article.id}}" (click)="delete(article.id)">
-                  delete
-                </i>
-              </div>
+        </a>
+        <div class="card-footer text-muted">
+          <div class="row">
+            <div class="col-10">
+              <i *ngFor="let stars of ratingAsStars(article.rating)" class="material-icons">stars</i>
+            </div>
+            <div class="col-2">
+              <app-delete-article [article]="article" (hasBeenDeleted)="onDelete($event)"></app-delete-article>
             </div>
           </div>
-        </a>
+        </div>
       </div>
     </div>
   </div>
