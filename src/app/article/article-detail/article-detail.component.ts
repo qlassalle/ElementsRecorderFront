@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Article} from '../model/Article';
 import {ActivatedRoute} from '@angular/router';
-import {HttpArticleService} from '../service/article/http-article.service';
 import {ArticleService} from '../service/article/ArticleService';
 
 @Component({

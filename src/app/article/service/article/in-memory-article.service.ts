@@ -11,6 +11,10 @@ export class InMemoryArticleService implements ArticleService {
     this.articles = JSON.parse(localStorage.getItem('articles')) as Article[] ?? [];
   }
 
+  feed(articles: Article[]) {
+    this.articles = articles;
+  }
+
   getAll(): Observable<Article[]> {
     return of(this.articles);
   }

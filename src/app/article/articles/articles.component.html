@@ -22,7 +22,9 @@
                 <i *ngFor="let stars of ratingAsStars(article.rating)" class="material-icons">stars</i>
               </div>
               <div class="col-2">
-                <i class="material-icons delete-button" (click)="delete(article.id)">delete</i>
+                <i class="material-icons delete-button" id="delete-article-{{article.id}}" (click)="delete(article.id)">
+                  delete
+                </i>
               </div>
             </div>
           </div>

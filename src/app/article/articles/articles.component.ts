@@ -20,7 +20,6 @@ export class ArticlesComponent implements OnInit {
   private getArticles(): void {
     this.articleService.getAll().subscribe(articles => {
       this.articles = articles;
-      console.log(articles);
     });
   }
 
