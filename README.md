@@ -1,5 +1,8 @@
 # TODO
-* delete article should show confirmation + a toast to indicate if deletion worked or not.
+* rename all "article" reference to "resource"
+* rework login and signup view
+* forgot password feature
+* work on cards visuals
 
 # ElementsRecorder
 

@@ -6,13 +6,7 @@ import {ArticleService} from '../service/article/ArticleService';
 import {ArticleGenerator} from '../../../tests/article/model/ArticleGenerator';
 import {Article} from '../model/Article';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {of} from 'rxjs';
-
-class MatSnackBarStub {
-  open() {
-    return of();
-  }
-}
+import {MatSnackBarStub} from '../../shared/MatSnackBarStub';
 
 describe('DeleteArticleComponent', () => {
   let component: DeleteArticleComponent;

@@ -6,6 +6,8 @@ import {ArticleService} from '../service/article/ArticleService';
 import {ArticleGenerator} from '../../../tests/article/model/ArticleGenerator';
 import {TestPage} from '../../shared/TestPage';
 import {DeleteArticleComponent} from '../delete-article/delete-article.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatSnackBarStub} from '../../shared/MatSnackBarStub';
 
 describe('ArticlesComponent', () => {
   const articleGenerator: ArticleGenerator = new ArticleGenerator();
@@ -17,7 +19,10 @@ describe('ArticlesComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ArticlesComponent, DeleteArticleComponent],
-      providers: [{provide: ArticleService, useValue: articleService}]
+      providers: [
+        {provide: ArticleService, useValue: articleService},
+        {provide: MatSnackBar, useClass: MatSnackBarStub},
+      ]
     })
     .compileComponents();
   }));

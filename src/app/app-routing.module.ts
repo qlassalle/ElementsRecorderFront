@@ -3,7 +3,6 @@ import {RouterModule, Routes} from '@angular/router';
 import {ArticleDetailComponent} from './article/article-detail/article-detail.component';
 import {ArticlesComponent} from './article/articles/articles.component';
 import {SaveArticleComponent} from './article/save-article/save-article.component';
-import {RegistrationComponent} from './authentication/registration/registration.component';
 import {AuthenticationComponent} from './authentication/authentication/authentication.component';
 
 const routes: Routes = [
@@ -17,7 +16,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [],
   imports: [
-    RouterModule.forRoot(routes, {useHash: true})
+    RouterModule.forRoot(routes)
   ],
   exports: [
     RouterModule
