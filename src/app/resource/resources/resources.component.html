@@ -19,10 +19,15 @@
         </a>
         <div class="card-footer text-muted">
           <div class="row">
-            <div class="col-10">
-              <i *ngFor="let stars of ratingAsStars(resource.rating)" class="material-icons">stars</i>
+            <div class="col-md-9">
+              <div class="col-md-12 tags">
+                {{ resource.tags }}
+              </div>
+              <div class="col-12">
+                <i *ngFor="let stars of ratingAsStars(resource.rating)" class="material-icons">stars</i>
+              </div>
             </div>
-            <div class="col-2">
+            <div class="col-md-3 delete-icon">
               <app-delete-resource [resource]="resource" (hasBeenDeleted)="onDelete($event)"></app-delete-resource>
             </div>
           </div>

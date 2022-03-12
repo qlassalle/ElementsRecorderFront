@@ -38,3 +38,13 @@
 #add-resource {
   margin-bottom: 20px;
 }
+
+.tags {
+  margin-bottom: 5px;
+}
+
+.delete-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

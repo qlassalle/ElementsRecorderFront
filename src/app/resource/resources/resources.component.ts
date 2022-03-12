@@ -18,11 +18,9 @@ export class ResourcesComponent implements OnInit {
   }
 
   private getResources(): void {
-    console.log('yep');
     this.resourceService.getAll().subscribe(resources => {
       this.resources = resources;
     });
-    console.log('nop');
   }
 
   ratingAsStars(rating: number): number[] {

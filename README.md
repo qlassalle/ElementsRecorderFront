@@ -1,5 +1,7 @@
 # TODO
+* manage some kind of read later functionality
 * rework login and signup view
+* rework resource creation inputs
 * forgot password feature
 * work on cards visuals
 

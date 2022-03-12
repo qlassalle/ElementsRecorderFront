@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Resource} from '../model/Resource';
 import {SharedConstants} from '../../shared/shared.constants';
 import {Router} from '@angular/router';
@@ -25,7 +25,10 @@ export class SaveResourceComponent implements OnInit {
       name: '',
       description: '',
       url: ['', [Validators.required, Validators.pattern(SharedConstants.URL_REGEX)]],
-      rating: ''
+      rating: '',
+      tags: new FormGroup({
+        tags: new FormControl('')
+      })
     });
   }
 
@@ -37,6 +40,7 @@ export class SaveResourceComponent implements OnInit {
 
   onSubmit(formValue: any) {
     if (this.resource == null) {
+      formValue.tags = formValue.tags.tags?.split(',');
       this.resourceService.create(formValue).subscribe((created: Resource) => {
         this.router.navigateByUrl('/resources/' + created.id);
       }, (error) => {

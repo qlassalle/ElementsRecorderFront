@@ -15,6 +15,11 @@ export class InMemoryResourceService implements ResourceService {
     this.resources = resources;
   }
 
+  clear() {
+    this.resources = [];
+    localStorage.removeItem('resources');
+  }
+
   getAll(): Observable<Resource[]> {
     return of(this.resources);
   }
@@ -33,6 +38,7 @@ export class InMemoryResourceService implements ResourceService {
       description: resource.description,
       rating: +resource.rating,
       url: resource.url,
+      tags: resource.tags,
       created_at: '2020-09-28T20:22:33.301528Z',
       updated_at: '2020-09-28T20:22:33.301528Z'
     };

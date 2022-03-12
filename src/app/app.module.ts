@@ -17,6 +17,7 @@ import {ResourceService} from './resource/service/resource/ResourceService';
 import {resourceServiceFactory} from './resource/service/resource/ResourceServiceFactory';
 import {ResourceModule} from './resource/resource.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TagModule} from './tag/tag.module';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -48,7 +49,8 @@ export function tokenGetter() {
       }
     }),
     ResourceModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    TagModule
   ],
   providers: [
     FormBuilder,

@@ -6,24 +6,27 @@ import {TestPage} from '../../shared/TestPage';
 import {InMemoryResourceService} from '../service/resource/in-memory-resource.service';
 import {Router} from '@angular/router';
 import {ResourceService} from '../service/resource/ResourceService';
+import {TagModule} from '../../tag/tag.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 describe('SaveResourceComponent', () => {
+  const inMemoryResourceService = new InMemoryResourceService();
   let component: SaveResourceComponent;
   let fixture: ComponentFixture<SaveResourceComponent>;
   let page: TestPage<SaveResourceComponent>;
   let routerSpy;
 
   beforeEach(waitForAsync(() => {
-    localStorage.clear();
+    inMemoryResourceService.clear();
     routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
     routerSpy.navigateByUrl.and.stub();
     TestBed.configureTestingModule({
-      declarations: [ SaveResourceComponent ],
+      declarations: [SaveResourceComponent],
       providers: [
-        {provide: ResourceService, useValue: new InMemoryResourceService()},
+        {provide: ResourceService, useValue: inMemoryResourceService},
         {provide: Router, useValue: routerSpy}
       ],
-      imports: [ReactiveFormsModule, FormsModule]
+      imports: [ReactiveFormsModule, FormsModule, TagModule, BrowserAnimationsModule]
     })
     .compileComponents();
   }));
@@ -57,6 +60,24 @@ describe('SaveResourceComponent', () => {
     expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/resources/00000000-0000-0000-0000-000000000001');
   });
 
+  it('should create resource with tags when correct', async () => {
+    const resource = {
+      name: 'Angular',
+      description: 'Front-end framework',
+      url: 'https://www.angular.io',
+      rating: '5',
+      tags: ['front', 'programming']
+    };
+    spyOn(inMemoryResourceService, 'create').and.callThrough();
+    fillAndSubmitForm(resource);
+
+    // validate transformation from comma separated tags to tag array
+    expect(inMemoryResourceService.create).toHaveBeenCalledWith(resource);
+    expect(getResourcesFromLocalStorage().length).toEqual(1);
+    expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/resources/00000000-0000-0000-0000-000000000001');
+  });
+
+
   it('should display an error toast when backend fails', async () => {
     const resource = {name: 'Foojay', description: 'Java blog', url: 'https://www.foojay.io', rating: '5'};
     fillAndSubmitForm(resource);
@@ -67,11 +88,12 @@ describe('SaveResourceComponent', () => {
     expect(routerSpy.navigateByUrl).toHaveBeenCalledTimes(0);
   });
 
-  function fillAndSubmitForm(resource: { name: string; rating: string; description: string; url: string }) {
+  function fillAndSubmitForm(resource: { name: string; rating: string; description: string; url: string, tags?: string[]}) {
     page.setInputAndLoseFocus(TemplateConstants.NAME_INPUT_ID, resource.name);
     page.setInputAndLoseFocus(TemplateConstants.DESCRIPTION_INPUT_ID, resource.description);
     page.setInputAndLoseFocus(TemplateConstants.URL_INPUT_ID, resource.url);
     page.setInputAndLoseFocus(TemplateConstants.RATING_INPUT_ID, resource.rating);
+    page.setInputAndLoseFocus(TemplateConstants.TAGS_INPUT_ID, resource.tags?.join(','));
 
     page.getButton(TemplateConstants.SUBMIT_BUTTON)
         .click();
@@ -87,6 +109,7 @@ describe('SaveResourceComponent', () => {
     static URL_INPUT_ID = '#url';
     static DESCRIPTION_INPUT_ID = '#description';
     static RATING_INPUT_ID = '#rating';
+    static TAGS_INPUT_ID = '#tags';
     static ERROR_DIV_ID = '#url-errors-create-resource';
     static INVALID_URL_DIV_ID = '#invalid-url-create-resource';
     static REQUIRED_URL_ID = '#required-url-create-resource';
