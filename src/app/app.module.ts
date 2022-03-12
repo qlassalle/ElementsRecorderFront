@@ -16,6 +16,7 @@ import {environment} from '../environments/environment';
 import {ArticleService} from './article/service/article/ArticleService';
 import {articleServiceFactory} from './article/service/article/ArticleServiceFactory';
 import {ArticleModule} from './article/article.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -46,7 +47,8 @@ export function tokenGetter() {
         ]
       }
     }),
-    ArticleModule
+    ArticleModule,
+    BrowserAnimationsModule
   ],
   providers: [
     FormBuilder,
