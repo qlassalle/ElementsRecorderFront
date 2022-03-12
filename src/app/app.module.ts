@@ -2,20 +2,20 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {ArticlesComponent} from './article/articles/articles.component';
+import {ResourcesComponent} from './resource/resources/resources.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {ArticleDetailComponent} from './article/article-detail/article-detail.component';
+import {ResourceDetailComponent} from './resource/resource-detail/resource-detail.component';
 import {AppRoutingModule} from './app-routing.module';
 import {MenuNavbarComponent} from './menu-navbar/menu-navbar.component';
-import {SaveArticleComponent} from './article/save-article/save-article.component';
+import {SaveResourceComponent} from './resource/save-resource/save-resource.component';
 import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 import {AuthenticationModule} from './authentication/authentication.module';
 import {JwtModule} from '@auth0/angular-jwt';
-import {ReadOnlyArticleComponent} from './article/read-only-article/read-only-article.component';
+import {ReadOnlyResourceComponent} from './resource/read-only-resource/read-only-resource.component';
 import {environment} from '../environments/environment';
-import {ArticleService} from './article/service/article/ArticleService';
-import {articleServiceFactory} from './article/service/article/ArticleServiceFactory';
-import {ArticleModule} from './article/article.module';
+import {ResourceService} from './resource/service/resource/ResourceService';
+import {resourceServiceFactory} from './resource/service/resource/ResourceServiceFactory';
+import {ResourceModule} from './resource/resource.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 export function tokenGetter() {
@@ -25,11 +25,11 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    ArticlesComponent,
-    ArticleDetailComponent,
+    ResourcesComponent,
+    ResourceDetailComponent,
     MenuNavbarComponent,
-    SaveArticleComponent,
-    ReadOnlyArticleComponent,
+    SaveResourceComponent,
+    ReadOnlyResourceComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,14 +47,14 @@ export function tokenGetter() {
         ]
       }
     }),
-    ArticleModule,
+    ResourceModule,
     BrowserAnimationsModule
   ],
   providers: [
     FormBuilder,
     {
-      provide: ArticleService,
-      useFactory: articleServiceFactory,
+      provide: ResourceService,
+      useFactory: resourceServiceFactory,
       deps: [HttpClient]
     }
   ],

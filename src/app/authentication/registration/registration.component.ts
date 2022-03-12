@@ -30,7 +30,7 @@ export class RegistrationComponent implements OnInit {
   onSubmit(registrationData) {
     this.authenticationService.register(registrationData).subscribe((data: AccessToken) => {
       localStorage.setItem('access_token', data.access_token);
-      this.router.navigateByUrl('/articles');
+      this.router.navigateByUrl('/resources');
     },
       (error: HttpErrorResponse) => {
         console.log(error);

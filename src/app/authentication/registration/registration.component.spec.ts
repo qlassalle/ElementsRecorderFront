@@ -41,13 +41,13 @@ describe('RegistrationComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should allow user to register and redirect him to the list of articles', () => {
+  it('should allow user to register and redirect him to the list of resources', () => {
     expect(localStorage.getItem('access_token')).toBeNull();
     const authenticationData = {email: 'testemail@gmail.com', password: 'Passw0rd.', confirm_password: 'Passw0rd.'};
 
     component.onSubmit(authenticationData);
     expect(localStorage.getItem('access_token')).toEqual('ey123456.abcdefghi.7890cvbn');
-    expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/articles');
+    expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/resources');
   });
 
   TestCases.EMAIL.forEach(({email, valid}) => {

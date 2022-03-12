@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   onSubmit(loginData) {
     this.authenticationService.login(loginData).subscribe((accessToken: AccessToken) => {
       localStorage.setItem('access_token', accessToken.access_token);
-      this.router.navigateByUrl('/articles');
+      this.router.navigateByUrl('/resources');
     },
       (error: HttpErrorResponse) => {
         this.loginForm.setErrors({serverError: error.error.message});

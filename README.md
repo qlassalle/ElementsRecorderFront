@@ -1,5 +1,4 @@
 # TODO
-* rename all "article" reference to "resource"
 * rework login and signup view
 * forgot password feature
 * work on cards visuals

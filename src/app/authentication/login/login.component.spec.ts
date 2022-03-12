@@ -53,7 +53,7 @@ describe('LoginComponent', () => {
 
     await component.onSubmit(authenticationData);
     expect(localStorage.getItem(accessTokenKey)).toEqual(accessToken);
-    expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/articles');
+    expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/resources');
   });
 
   TestCases.EMAIL.forEach(({email, valid}) => {

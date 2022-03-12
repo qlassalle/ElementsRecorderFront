@@ -1,0 +1,40 @@
+.container a:first-child {
+  float: right;
+}
+
+.resource-list {
+  margin-top: 30px;
+}
+
+.resource-body {
+  height: 200px;
+}
+
+.resource-header {
+  height: 50px;
+  background-color: rgba(0,0,0,.03);
+  text-align: center;
+  padding-top: 10px;
+  color: #44484f !important;
+}
+
+.resource-description {
+  height: 60%;
+  text-align: justify;
+}
+
+.resource-card {
+  margin-bottom: 30px;
+}
+
+.card a {
+  text-decoration: none;
+}
+
+.card-title, .card-body {
+  color: black;
+}
+
+#add-resource {
+  margin-bottom: 20px;
+}

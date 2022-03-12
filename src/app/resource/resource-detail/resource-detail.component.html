@@ -1,0 +1,13 @@
+<div class="container">
+  <div *ngIf="resource && !editMode" class="card resource-detail-card">
+    <div class="row">
+      <div class="col">
+        <i class="material-icons float-right" (click)="switchToEditMode()">edit</i>
+      </div>
+    </div>
+    <app-read-only-resource [resource]="resource"></app-read-only-resource>
+  </div>
+  <div *ngIf="resource && editMode">
+    <app-save-resource [resource]="resource" [editMode]="editMode" (hasSavedChanges)="onSave($event)"></app-save-resource>
+  </div>
+</div>
