@@ -38,6 +38,7 @@ describe('ArticlesComponent', () => {
     expect(articleService.articles.length).toEqual(1);
     expect(component.articles.length).toEqual(1);
 
+    spyOn(window, 'confirm').and.returnValue(true);
     page.getButton('#delete-article-' + articleGenerator.oneArticle().id).click();
     fixture.detectChanges();
 

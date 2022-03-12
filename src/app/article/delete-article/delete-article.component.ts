@@ -20,9 +20,11 @@ export class DeleteArticleComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  delete(id: string): void {
-    // use observable to handle failure here
-    this.articleService.delete(id);
-    this.hasBeenDeleted.emit(id);
+  delete(): void {
+    if (window.confirm('Do you really want to delete the resource ' + this.article.name + '?')) {
+      // use observable to handle failure here
+      this.articleService.delete(this.article.id);
+      this.hasBeenDeleted.emit(this.article.id);
+    }
   }
 }
