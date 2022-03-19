@@ -42,9 +42,9 @@ export function tokenGetter() {
       config: {
         tokenGetter: () => localStorage.getItem('access_token'),
         allowedDomains: [environment.allowedDomain],
-        disallowedRoutes: ['https://ozxkf3w0u6.execute-api.eu-west-3.amazonaws.com/authenticate',
-          'https://ozxkf3w0u6.execute-api.eu-west-3.amazonaws.com/authenticate/register',
-          'https://ozxkf3w0u6.execute-api.eu-west-3.amazonaws.com/hello'
+        disallowedRoutes: [environment.serverUrl + '/authenticate',
+          environment.serverUrl + '/authenticate/register',
+          environment.serverUrl + '/hello'
         ]
       }
     }),
