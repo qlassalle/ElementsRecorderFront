@@ -3,6 +3,18 @@
     <mat-label>
       Tag(s)
     </mat-label>
-    <input matInput id="tags" placeholder="Programming" formControlName="tags">
+    <input type="text" id="tags" placeholder="Programming" formControlName="tags" matInput [matAutocomplete]="auto"
+           (keydown.enter)="keyupInput($event)">
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectTag($event.option.value)">
+      <mat-option *ngFor="let tag of filteredOptions | async" [value]="tag.name">
+        {{ tag.name }}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
+  <input type="hidden" id="selected-tags" formControlName="selectedTags" [value]="selectedTags">
+  <div>
+    <span *ngFor="let selected of selectedTags" class="badge badge-pill badge-primary selected-tags">
+      {{ selected }}
+    </span>
+  </div>
 </div>

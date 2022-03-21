@@ -2,9 +2,12 @@ import {ResourceService} from './ResourceService';
 import {Observable, of, throwError} from 'rxjs';
 import {Resource} from '../../model/Resource';
 import {HttpErrorResponse} from '@angular/common/http';
+import {InMemoryTagService} from '../../../tag/service/in-memory-tag.service';
+import {Tag} from '../../../tag/model/Tag';
 
 export class InMemoryResourceService implements ResourceService {
 
+  inMemoryTagService: InMemoryTagService = new InMemoryTagService();
   resources: Resource[] = [];
 
   constructor() {
@@ -32,13 +35,15 @@ export class InMemoryResourceService implements ResourceService {
       }));
     }
 
+    const tags: Tag[] = [];
+    resource.tags.forEach(tag => (this.inMemoryTagService.getOrCreate(tag).subscribe(t => tags.push(t))));
     const createdResource: Resource = {
       id: '00000000-0000-0000-0000-00000000000' + (this.resources.length + 1),
       name: resource.name,
       description: resource.description,
       rating: +resource.rating,
       url: resource.url,
-      tags: resource.tags,
+      tags,
       created_at: '2020-09-28T20:22:33.301528Z',
       updated_at: '2020-09-28T20:22:33.301528Z'
     };

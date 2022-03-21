@@ -27,7 +27,8 @@ export class SaveResourceComponent implements OnInit {
       url: ['', [Validators.required, Validators.pattern(SharedConstants.URL_REGEX)]],
       rating: '',
       tags: new FormGroup({
-        tags: new FormControl('')
+        tags: new FormControl(''),
+        selectedTags: new FormControl('')
       })
     });
   }
@@ -40,7 +41,7 @@ export class SaveResourceComponent implements OnInit {
 
   onSubmit(formValue: any) {
     if (this.resource == null) {
-      formValue.tags = formValue.tags.tags?.split(',');
+      formValue.tags = formValue.tags.selectedTags?.split(',');
       this.resourceService.create(formValue).subscribe((created: Resource) => {
         this.router.navigateByUrl('/resources/' + created.id);
       }, (error) => {
