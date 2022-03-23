@@ -8,9 +8,12 @@ import {Router} from '@angular/router';
 import {ResourceService} from '../service/resource/ResourceService';
 import {TagModule} from '../../tag/tag.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TagService} from '../../tag/service/TagService';
+import {InMemoryTagService} from '../../tag/service/in-memory-tag.service';
 
 describe('SaveResourceComponent', () => {
   const inMemoryResourceService = new InMemoryResourceService();
+  const inMemoryTagService = new InMemoryTagService();
   let component: SaveResourceComponent;
   let fixture: ComponentFixture<SaveResourceComponent>;
   let page: TestPage<SaveResourceComponent>;
@@ -24,6 +27,7 @@ describe('SaveResourceComponent', () => {
       declarations: [SaveResourceComponent],
       providers: [
         {provide: ResourceService, useValue: inMemoryResourceService},
+        {provide: TagService, useValue: inMemoryTagService},
         {provide: Router, useValue: routerSpy}
       ],
       imports: [ReactiveFormsModule, FormsModule, TagModule, BrowserAnimationsModule]

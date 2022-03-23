@@ -9,6 +9,7 @@ import {tagServiceFactory} from './service/TagServiceFactory';
 import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {HttpClient} from '@angular/common/http';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     {
       provide: TagService,
       useFactory: tagServiceFactory,
+      deps: [HttpClient]
     },
   ]
 })

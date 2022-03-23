@@ -26,7 +26,7 @@ export class HttpResourceService implements ResourceService {
   }
 
   create(resourceData: any): Observable<Resource> {
-    return this.http.post(this.url + '/', resourceData, this.httpOptions).pipe() as Observable<Resource>;
+    return this.http.post<Resource>(this.url + '/', resourceData, this.httpOptions).pipe();
   }
 
   delete(id: string): void {
@@ -34,6 +34,6 @@ export class HttpResourceService implements ResourceService {
   }
 
   update(id: string, resource: any): Observable<Resource> {
-    return this.http.put(this.url + '/' + id, resource, this.httpOptions).pipe() as Observable<Resource>;
+    return this.http.put<Resource>(this.url + '/' + id, resource, this.httpOptions).pipe();
   }
 }
