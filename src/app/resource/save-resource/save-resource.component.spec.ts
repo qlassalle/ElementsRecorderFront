@@ -97,12 +97,22 @@ describe('SaveResourceComponent', () => {
     page.setInputAndLoseFocus(TemplateConstants.DESCRIPTION_INPUT_ID, resource.description);
     page.setInputAndLoseFocus(TemplateConstants.URL_INPUT_ID, resource.url);
     page.setInputAndLoseFocus(TemplateConstants.RATING_INPUT_ID, resource.rating);
-    page.setInputAndLoseFocus(TemplateConstants.TAGS_INPUT_ID, resource.tags?.join(','));
+    resource.tags.forEach(tag => {
+      addTag(tag);
+    });
 
-    page.getButton(TemplateConstants.SUBMIT_BUTTON)
-        .click();
+    page.getButton(TemplateConstants.SUBMIT_BUTTON).click();
     fixture.detectChanges();
   }
+
+  function addTag(tag: string) {
+    page.setInputAndLoseFocus('#tags', tag);
+    const input = page.getInput('#tags');
+    input.dispatchEvent(new Event('focus'));
+    input.dispatchEvent(new KeyboardEvent('keydown', {key: 'Enter'}));
+    fixture.detectChanges();
+  }
+
 
   function getResourcesFromLocalStorage() {
     return JSON.parse(localStorage.getItem('resources'));

@@ -14,7 +14,7 @@ export class AddTagComponent implements OnInit {
 
   @Input()
   tags: FormGroup;
-  userTags: Tag[];
+  userTags: Tag[] = [];
   filteredOptions: Observable<Tag[]>;
   selectedTags: string[] = [];
 

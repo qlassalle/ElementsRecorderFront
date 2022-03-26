@@ -41,7 +41,7 @@ export class SaveResourceComponent implements OnInit {
 
   onSubmit(formValue: any) {
     if (this.resource == null) {
-      formValue.tags = formValue.tags.selectedTags?.split(',');
+      formValue.tags = formValue.tags.selectedTags;
       this.resourceService.create(formValue).subscribe((created: Resource) => {
         this.router.navigateByUrl('/resources/' + created.id);
       }, (error) => {
