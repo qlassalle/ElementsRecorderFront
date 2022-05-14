@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: elements-recorder-front
+  name: elements-recorder-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elements-recorder-front
+  strategy: { }
+  template:
+    metadata:
+      labels:
+        app: elements-recorder-front
+    spec:
+      containers:
+        - name: elements-recorder-front
+          image: 192.168.1.21:5000/elements-recorder-front
+          resources: {}
