@@ -24,9 +24,5 @@ FROM nginx:latest
 # Copy the build output to replace the default nginx contents.
 COPY --from=build /usr/local/app/dist/elements-recorder /usr/share/nginx/html
 
-# Remove default nginx conf
-RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx.conf /etc/nginx/conf.d
-
 # Expose port 80
 EXPOSE 80

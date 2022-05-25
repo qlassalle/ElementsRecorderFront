@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  serverUrl: 'http://elements-recorder-api-ip:8080/api',
-  allowedDomain: 'elements-recorder-api-ip:8080'
+  serverUrl: 'http://192.168.1.21:30202/api',
+  allowedDomain: '192.168.1.21:30202'
 };
