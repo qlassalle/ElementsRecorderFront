@@ -26,7 +26,15 @@
                 </span>
               </div>
               <div class="col-12">
-                <i *ngFor="let stars of ratingAsStars(resource.rating)" class="material-icons">stars</i>
+                <div *ngIf="resource.rating; else toReadTemplate">
+                  <i *ngFor="let stars of ratingAsStars(resource.rating)" class="material-icons">stars</i>
+                </div>
+                <ng-template #toReadTemplate>
+                  <div class="to-read">
+                    <i class="material-icons">assignment</i>
+                    <span class="to-read-text">To read</span>
+                  </div>
+                </ng-template>
               </div>
             </div>
             <div class="col-md-3 delete-icon">

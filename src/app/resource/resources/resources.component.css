@@ -53,3 +53,9 @@
   margin: 2px;
   font-weight: 500;
 }
+
+.to-read {
+  display: flex;
+  align-items: center;
+  color: rgb(235, 175, 0);
+}
