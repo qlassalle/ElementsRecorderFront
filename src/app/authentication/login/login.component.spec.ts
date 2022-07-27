@@ -10,7 +10,7 @@ import {InMemoryAuthenticationService} from '../service/in-memory-authentication
 
 describe('LoginComponent', () => {
   const accessTokenKey = 'access_token';
-  const accessToken = 'ey123456.abcdefghi.7890cvbn';
+  const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let routerSpy;

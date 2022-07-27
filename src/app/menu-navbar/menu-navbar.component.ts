@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,24 @@ import {Component, OnInit} from '@angular/core';
 })
 export class MenuNavbarComponent implements OnInit {
 
-  constructor() { }
+   private jwtHelper: JwtHelperService;
+   authenticationLink = 'Sign in';
 
-  ngOnInit(): void {
+  constructor() {
+    this.jwtHelper = new JwtHelperService();
   }
 
+  ngOnInit(): void {
+    this.displayUsername();
+  }
+
+  private displayUsername() {
+    const token = localStorage.getItem('access_token');
+    if (token === null || this.jwtHelper.isTokenExpired(token)) {
+      return;
+    }
+
+    const decodedToken = this.jwtHelper.decodeToken(token);
+    this.authenticationLink = decodedToken.Username;
+  }
 }

@@ -43,8 +43,7 @@ export function tokenGetter() {
         tokenGetter: () => localStorage.getItem('access_token'),
         allowedDomains: [environment.allowedDomain],
         disallowedRoutes: [environment.serverUrl + '/authenticate',
-          environment.serverUrl + '/authenticate/register',
-          environment.serverUrl + '/hello'
+          environment.serverUrl + '/authenticate/register'
         ]
       }
     }),

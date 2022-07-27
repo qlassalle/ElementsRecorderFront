@@ -81,7 +81,6 @@ describe('SaveResourceComponent', () => {
     expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/resources/00000000-0000-0000-0000-000000000001');
   });
 
-
   it('should display an error toast when backend fails', async () => {
     const resource = {name: 'Foojay', description: 'Java blog', url: 'https://www.foojay.io', rating: '5'};
     fillAndSubmitForm(resource);

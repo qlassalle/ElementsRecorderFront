@@ -9,7 +9,7 @@ import {Injectable} from '@angular/core';
 })
 export class InMemoryAuthenticationService implements AuthenticationService {
 
-  private readonly accessToken = 'ey123456.abcdefghi.7890cvbn';
+  private readonly accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
   private readonly correctPassword = 'Passw0rd.';
 
   login(loginData: any): Observable<AccessToken> {

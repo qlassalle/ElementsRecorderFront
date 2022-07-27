@@ -46,7 +46,7 @@ describe('RegistrationComponent', () => {
     const authenticationData = {email: 'testemail@gmail.com', password: 'Passw0rd.', confirm_password: 'Passw0rd.'};
 
     component.onSubmit(authenticationData);
-    expect(localStorage.getItem('access_token')).toEqual('ey123456.abcdefghi.7890cvbn');
+    expect(localStorage.getItem('access_token')).toEqual('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c');
     expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/resources');
   });
 
