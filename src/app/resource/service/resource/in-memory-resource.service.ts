@@ -36,7 +36,7 @@ export class InMemoryResourceService implements ResourceService {
     }
 
     const tags: Tag[] = [];
-    resource.tags.forEach(tag => (this.inMemoryTagService.getOrCreate(tag).subscribe(t => tags.push(t))));
+    resource.tags?.forEach(tag => (this.inMemoryTagService.getOrCreate(tag).subscribe(t => tags.push(t))));
     const createdResource: Resource = {
       id: '00000000-0000-0000-0000-00000000000' + (this.resources.length + 1),
       name: resource.name,

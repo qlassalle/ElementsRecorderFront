@@ -96,7 +96,7 @@ describe('SaveResourceComponent', () => {
     page.setInputAndLoseFocus(TemplateConstants.DESCRIPTION_INPUT_ID, resource.description);
     page.setInputAndLoseFocus(TemplateConstants.URL_INPUT_ID, resource.url);
     page.setInputAndLoseFocus(TemplateConstants.RATING_INPUT_ID, resource.rating);
-    resource.tags.forEach(tag => {
+    resource.tags?.forEach(tag => {
       addTag(tag);
     });
 
