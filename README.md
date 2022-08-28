@@ -1,6 +1,4 @@
 # TODO
-* manage some kind of read later functionality
-* set resource inputs as required
 * rework login and signup view
 * rework resource creation inputs
 * enable tag removal on resource creation
