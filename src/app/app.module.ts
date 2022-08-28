@@ -18,6 +18,7 @@ import {resourceServiceFactory} from './resource/service/resource/ResourceServic
 import {ResourceModule} from './resource/resource.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TagModule} from './tag/tag.module';
+import {ResourceFilterComponent} from './resource/resource-filter/resource-filter.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -31,6 +32,7 @@ export function tokenGetter() {
     MenuNavbarComponent,
     SaveResourceComponent,
     ReadOnlyResourceComponent,
+    ResourceFilterComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,14 @@
 <div class="container">
-  <a routerLink="/resource/create" class="btn btn-primary" id="add-resource">
-    Add a resource
-  </a>
+  <div class="row">
+    <div class="col-md-9">
+      <app-resource-filter [resources]="resources"></app-resource-filter>
+    </div>
+    <div class="col-md-3">
+      <a routerLink="/resource/create" class="btn btn-primary" id="add-resource">
+        Add a resource
+      </a>
+    </div>
+  </div>
   <div class="row resource-list">
     <div class="col-md-4 col-sm-12 resource-card" *ngFor="let resource of resources">
       <div class="card">
